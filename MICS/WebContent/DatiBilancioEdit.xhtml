@@ -1,0 +1,445 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="datiBilancio" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{datiBilancioHome.managed ? 'Edit' : 'Add'} Dati bilancio</f:facet>
+
+
+            <s:decorate id="annoBilancioField" template="layout/edit.xhtml">
+                <ui:define name="label">Anno bilancio</ui:define>
+                <h:inputText id="annoBilancio"
+                       required="true"
+                       disabled="#{datiBilancioHome.managed}"
+                          value="#{datiBilancioHome.instance.id.annoBilancio}">
+                    <a:support event="onblur" reRender="annoBilancioField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <s:decorate id="simulazioneIdField" template="layout/edit.xhtml">
+                <ui:define name="label">Simulazione id</ui:define>
+                <h:inputText id="simulazioneId"
+                       required="true"
+                       disabled="#{datiBilancioHome.managed}"
+                          value="#{datiBilancioHome.instance.id.simulazioneId}">
+                    <a:support event="onblur" reRender="simulazioneIdField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+            <s:decorate id="avviamentoField" template="layout/edit.xhtml">
+                <ui:define name="label">Avviamento</ui:define>
+                <h:inputText id="avviamento"
+                       required="true"
+                          value="#{datiBilancioHome.instance.avviamento}"
+                           size="26">
+                    <a:support event="onblur" reRender="avviamentoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="costiProdGodimentoBeniTerziField" template="layout/edit.xhtml">
+                <ui:define name="label">Costi prod godimento beni terzi</ui:define>
+                <h:inputText id="costiProdGodimentoBeniTerzi"
+                       required="true"
+                          value="#{datiBilancioHome.instance.costiProdGodimentoBeniTerzi}"
+                           size="26">
+                    <a:support event="onblur" reRender="costiProdGodimentoBeniTerziField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="costiProduzioneServiziField" template="layout/edit.xhtml">
+                <ui:define name="label">Costi produzione servizi</ui:define>
+                <h:inputText id="costiProduzioneServizi"
+                       required="true"
+                          value="#{datiBilancioHome.instance.costiProduzioneServizi}"
+                           size="26">
+                    <a:support event="onblur" reRender="costiProduzioneServiziField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="costoLavoroMedioCompartoField" template="layout/edit.xhtml">
+                <ui:define name="label">Costo lavoro medio comparto</ui:define>
+                <h:inputText id="costoLavoroMedioComparto"
+                       required="true"
+                          value="#{datiBilancioHome.instance.costoLavoroMedioComparto}"
+                           size="26">
+                    <a:support event="onblur" reRender="costoLavoroMedioCompartoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="costoLavoroProCapiteField" template="layout/edit.xhtml">
+                <ui:define name="label">Costo lavoro pro capite</ui:define>
+                <h:inputText id="costoLavoroProCapite"
+                       required="true"
+                          value="#{datiBilancioHome.instance.costoLavoroProCapite}"
+                           size="26">
+                    <a:support event="onblur" reRender="costoLavoroProCapiteField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="costoMateriePrimeField" template="layout/edit.xhtml">
+                <ui:define name="label">Costo materie prime</ui:define>
+                <h:inputText id="costoMateriePrime"
+                       required="true"
+                          value="#{datiBilancioHome.instance.costoMateriePrime}"
+                           size="26">
+                    <a:support event="onblur" reRender="costoMateriePrimeField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="costoPersonaleField" template="layout/edit.xhtml">
+                <ui:define name="label">Costo personale</ui:define>
+                <h:inputText id="costoPersonale"
+                       required="true"
+                          value="#{datiBilancioHome.instance.costoPersonale}"
+                           size="26">
+                    <a:support event="onblur" reRender="costoPersonaleField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="debitiBancheSuFatturatoField" template="layout/edit.xhtml">
+                <ui:define name="label">Debiti banche su fatturato</ui:define>
+                <h:inputText id="debitiBancheSuFatturato"
+                       required="true"
+                          value="#{datiBilancioHome.instance.debitiBancheSuFatturato}"
+                           size="26">
+                    <a:support event="onblur" reRender="debitiBancheSuFatturatoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="ebitdaField" template="layout/edit.xhtml">
+                <ui:define name="label">Ebitda</ui:define>
+                <h:inputText id="ebitda"
+                       required="true"
+                          value="#{datiBilancioHome.instance.ebitda}"
+                           size="26">
+                    <a:support event="onblur" reRender="ebitdaField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="fatturatoField" template="layout/edit.xhtml">
+                <ui:define name="label">Fatturato</ui:define>
+                <h:inputText id="fatturato"
+                       required="true"
+                          value="#{datiBilancioHome.instance.fatturato}"
+                           size="26">
+                    <a:support event="onblur" reRender="fatturatoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="fatturatoComplessivoSettoreField" template="layout/edit.xhtml">
+                <ui:define name="label">Fatturato complessivo settore</ui:define>
+                <h:inputText id="fatturatoComplessivoSettore"
+                       required="true"
+                          value="#{datiBilancioHome.instance.fatturatoComplessivoSettore}"
+                           size="26">
+                    <a:support event="onblur" reRender="fatturatoComplessivoSettoreField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="numeroDipendentiField" template="layout/edit.xhtml">
+                <ui:define name="label">Numero dipendenti</ui:define>
+                <h:inputText id="numeroDipendenti"
+                       required="true"
+                          value="#{datiBilancioHome.instance.numeroDipendenti}">
+                    <a:support event="onblur" reRender="numeroDipendentiField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="percentualeCostiProduzioneTerritorioField" template="layout/edit.xhtml">
+                <ui:define name="label">Percentuale costi produzione territorio</ui:define>
+                <h:inputText id="percentualeCostiProduzioneTerritorio"
+                       required="true"
+                          value="#{datiBilancioHome.instance.percentualeCostiProduzioneTerritorio}">
+                    <a:support event="onblur" reRender="percentualeCostiProduzioneTerritorioField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="percentualeIndottoCongiunturaleTerritorioField" template="layout/edit.xhtml">
+                <ui:define name="label">Percentuale indotto congiunturale territorio</ui:define>
+                <h:inputText id="percentualeIndottoCongiunturaleTerritorio"
+                       required="true"
+                          value="#{datiBilancioHome.instance.percentualeIndottoCongiunturaleTerritorio}">
+                    <a:support event="onblur" reRender="percentualeIndottoCongiunturaleTerritorioField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="produzioneTotaleMercatoRiferimentoField" template="layout/edit.xhtml">
+                <ui:define name="label">Produzione totale mercato riferimento</ui:define>
+                <h:inputText id="produzioneTotaleMercatoRiferimento"
+                       required="true"
+                          value="#{datiBilancioHome.instance.produzioneTotaleMercatoRiferimento}">
+                    <a:support event="onblur" reRender="produzioneTotaleMercatoRiferimentoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="quantitaProdottaField" template="layout/edit.xhtml">
+                <ui:define name="label">Quantita prodotta</ui:define>
+                <h:inputText id="quantitaProdotta"
+                       required="true"
+                          value="#{datiBilancioHome.instance.quantitaProdotta}">
+                    <a:support event="onblur" reRender="quantitaProdottaField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="quantitaProdottiStandardField" template="layout/edit.xhtml">
+                <ui:define name="label">Quantita prodotti standard</ui:define>
+                <h:inputText id="quantitaProdottiStandard"
+                       required="true"
+                          value="#{datiBilancioHome.instance.quantitaProdottiStandard}">
+                    <a:support event="onblur" reRender="quantitaProdottiStandardField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="quantitaVenduteField" template="layout/edit.xhtml">
+                <ui:define name="label">Quantita vendute</ui:define>
+                <h:inputText id="quantitaVendute"
+                       required="true"
+                          value="#{datiBilancioHome.instance.quantitaVendute}">
+                    <a:support event="onblur" reRender="quantitaVenduteField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="quotaAmmortamentoBeniImmaterialiField" template="layout/edit.xhtml">
+                <ui:define name="label">Quota ammortamento beni immateriali</ui:define>
+                <h:inputText id="quotaAmmortamentoBeniImmateriali"
+                       required="true"
+                          value="#{datiBilancioHome.instance.quotaAmmortamentoBeniImmateriali}"
+                           size="26">
+                    <a:support event="onblur" reRender="quotaAmmortamentoBeniImmaterialiField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="quotaAmmortamentoBeniMaterialiField" template="layout/edit.xhtml">
+                <ui:define name="label">Quota ammortamento beni materiali</ui:define>
+                <h:inputText id="quotaAmmortamentoBeniMateriali"
+                       required="true"
+                          value="#{datiBilancioHome.instance.quotaAmmortamentoBeniMateriali}"
+                           size="26">
+                    <a:support event="onblur" reRender="quotaAmmortamentoBeniMaterialiField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="quotaAmmortamentoImmImmaterialiField" template="layout/edit.xhtml">
+                <ui:define name="label">Quota ammortamento imm immateriali</ui:define>
+                <h:inputText id="quotaAmmortamentoImmImmateriali"
+                       required="true"
+                          value="#{datiBilancioHome.instance.quotaAmmortamentoImmImmateriali}"
+                           size="26">
+                    <a:support event="onblur" reRender="quotaAmmortamentoImmImmaterialiField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="quotaAmmortamentoImmMaterialiField" template="layout/edit.xhtml">
+                <ui:define name="label">Quota ammortamento imm materiali</ui:define>
+                <h:inputText id="quotaAmmortamentoImmMateriali"
+                       required="true"
+                          value="#{datiBilancioHome.instance.quotaAmmortamentoImmMateriali}"
+                           size="26">
+                    <a:support event="onblur" reRender="quotaAmmortamentoImmMaterialiField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="rendimentoInvestimentiSicuriField" template="layout/edit.xhtml">
+                <ui:define name="label">Rendimento investimenti sicuri</ui:define>
+                <h:inputText id="rendimentoInvestimentiSicuri"
+                       required="true"
+                          value="#{datiBilancioHome.instance.rendimentoInvestimentiSicuri}"
+                           size="26">
+                    <a:support event="onblur" reRender="rendimentoInvestimentiSicuriField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="roeField" template="layout/edit.xhtml">
+                <ui:define name="label">Roe</ui:define>
+                <h:inputText id="roe"
+                       required="true"
+                          value="#{datiBilancioHome.instance.roe}"
+                           size="26">
+                    <a:support event="onblur" reRender="roeField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="roiField" template="layout/edit.xhtml">
+                <ui:define name="label">Roi</ui:define>
+                <h:inputText id="roi"
+                       required="true"
+                          value="#{datiBilancioHome.instance.roi}"
+                           size="26">
+                    <a:support event="onblur" reRender="roiField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+            <s:decorate id="valoreProduzioneField" template="layout/edit.xhtml">
+                <ui:define name="label">Valore produzione</ui:define>
+                <h:inputText id="valoreProduzione"
+                       required="true"
+                          value="#{datiBilancioHome.instance.valoreProduzione}"
+                           size="26">
+                    <a:support event="onblur" reRender="valoreProduzioneField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="valoreProduzioneTotaleMercatoRiferimentoField" template="layout/edit.xhtml">
+                <ui:define name="label">Valore produzione totale mercato riferimento</ui:define>
+                <h:inputText id="valoreProduzioneTotaleMercatoRiferimento"
+                       required="true"
+                          value="#{datiBilancioHome.instance.valoreProduzioneTotaleMercatoRiferimento}"
+                           size="26">
+                    <a:support event="onblur" reRender="valoreProduzioneTotaleMercatoRiferimentoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{datiBilancioHome.persist}"
+                       disabled="#{!datiBilancioHome.wired}"
+                       rendered="#{!datiBilancioHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{datiBilancioHome.update}"
+                       rendered="#{datiBilancioHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{datiBilancioHome.remove}"
+                      immediate="true"
+                       rendered="#{datiBilancioHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/DatiBilancio.xhtml"
+                rendered="#{datiBilancioHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty datiBilancioFrom ? 'DatiBilancioList' : datiBilancioFrom}.xhtml"
+                rendered="#{!datiBilancioHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Anno bilancio *" labelClass="required">
+    <div class="association" id="annoBilancioParent">
+
+        <h:outputText value="There is no annoBilancio associated with this datiBilancio."
+                   rendered="#{datiBilancioHome.instance.annoBilancio == null}"/>
+
+        <rich:dataTable var="_annoBilancio"
+                   value="#{datiBilancioHome.instance.annoBilancio}"
+                rendered="#{datiBilancioHome.instance.annoBilancio != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="annoBilancioTable">
+            <h:column>
+                <f:facet name="header">Anno</f:facet>
+                <h:outputText value="#{_annoBilancio.anno}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{datiBilancioHome.instance.annoBilancio != null ? 'changeParent' : 'selectParent'}" value="#{datiBilancioHome.instance.annoBilancio != null ? 'Change' : 'Select'} annoBilancio"
+                       view="/AnnoBilancioList.xhtml">
+                <f:param name="from" value="DatiBilancioEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Simulazione *" labelClass="required">
+    <div class="association" id="simulazioneParent">
+
+        <h:outputText value="There is no simulazione associated with this datiBilancio."
+                   rendered="#{datiBilancioHome.instance.simulazione == null}"/>
+
+        <rich:dataTable var="_simulazione"
+                   value="#{datiBilancioHome.instance.simulazione}"
+                rendered="#{datiBilancioHome.instance.simulazione != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="simulazioneTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_simulazione.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Azienda id</f:facet>
+                <h:outputText value="#{_simulazione.azienda.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Data inserimento</f:facet>
+                <h:outputText value="#{_simulazione.dataInserimento}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Domanda mercato id</f:facet>
+                <h:outputText value="#{_simulazione.domandaMercato.id}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{datiBilancioHome.instance.simulazione != null ? 'changeParent' : 'selectParent'}" value="#{datiBilancioHome.instance.simulazione != null ? 'Change' : 'Select'} simulazione"
+                       view="/SimulazioneList.xhtml">
+                <f:param name="from" value="DatiBilancioEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

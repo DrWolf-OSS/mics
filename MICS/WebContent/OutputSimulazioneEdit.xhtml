@@ -1,0 +1,250 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="outputSimulazione" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{outputSimulazioneHome.managed ? 'Edit' : 'Add'} Output simulazione</f:facet>
+
+
+            <s:decorate id="simulazioneIdField" template="layout/edit.xhtml">
+                <ui:define name="label">Simulazione id</ui:define>
+                <h:inputText id="simulazioneId"
+                       required="true"
+                       disabled="#{outputSimulazioneHome.managed}"
+                          value="#{outputSimulazioneHome.instance.id.simulazioneId}">
+                    <a:support event="onblur" reRender="simulazioneIdField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <s:decorate id="trimestreSimulazioneField" template="layout/edit.xhtml">
+                <ui:define name="label">Trimestre simulazione</ui:define>
+                <h:inputText id="trimestreSimulazione"
+                       required="true"
+                       disabled="#{outputSimulazioneHome.managed}"
+                          value="#{outputSimulazioneHome.instance.id.trimestreSimulazione}">
+                    <a:support event="onblur" reRender="trimestreSimulazioneField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="domandaLavoroField" template="layout/edit.xhtml">
+                <ui:define name="label">Domanda lavoro</ui:define>
+                <h:inputText id="domandaLavoro"
+                       required="true"
+                          value="#{outputSimulazioneHome.instance.domandaLavoro}">
+                    <a:support event="onblur" reRender="domandaLavoroField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="esuberiField" template="layout/edit.xhtml">
+                <ui:define name="label">Esuberi</ui:define>
+                <h:inputText id="esuberi"
+                       required="true"
+                          value="#{outputSimulazioneHome.instance.esuberi}">
+                    <a:support event="onblur" reRender="esuberiField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="incrementoDaInnovazioneField" template="layout/edit.xhtml">
+                <ui:define name="label">Incremento da innovazione</ui:define>
+                <h:inputText id="incrementoDaInnovazione"
+                       required="true"
+                          value="#{outputSimulazioneHome.instance.incrementoDaInnovazione}">
+                    <a:support event="onblur" reRender="incrementoDaInnovazioneField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="incrementoDareputazioneField" template="layout/edit.xhtml">
+                <ui:define name="label">Incremento dareputazione</ui:define>
+                <h:inputText id="incrementoDareputazione"
+                       required="true"
+                          value="#{outputSimulazioneHome.instance.incrementoDareputazione}">
+                    <a:support event="onblur" reRender="incrementoDareputazioneField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="indottoCongiunturaleField" template="layout/edit.xhtml">
+                <ui:define name="label">Indotto congiunturale</ui:define>
+                <h:inputText id="indottoCongiunturale"
+                       required="true"
+                          value="#{outputSimulazioneHome.instance.indottoCongiunturale}"
+                           size="26">
+                    <a:support event="onblur" reRender="indottoCongiunturaleField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="indottoStrutturaleField" template="layout/edit.xhtml">
+                <ui:define name="label">Indotto strutturale</ui:define>
+                <h:inputText id="indottoStrutturale"
+                       required="true"
+                          value="#{outputSimulazioneHome.instance.indottoStrutturale}"
+                           size="26">
+                    <a:support event="onblur" reRender="indottoStrutturaleField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="productivityField" template="layout/edit.xhtml">
+                <ui:define name="label">Productivity</ui:define>
+                <h:inputText id="productivity"
+                       required="true"
+                          value="#{outputSimulazioneHome.instance.productivity}"
+                           size="26">
+                    <a:support event="onblur" reRender="productivityField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="quotaVolumiAziendaliField" template="layout/edit.xhtml">
+                <ui:define name="label">Quota volumi aziendali</ui:define>
+                <h:inputText id="quotaVolumiAziendali"
+                       required="true"
+                          value="#{outputSimulazioneHome.instance.quotaVolumiAziendali}"
+                           size="26">
+                    <a:support event="onblur" reRender="quotaVolumiAziendaliField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+
+            <s:decorate id="volumiMercatoField" template="layout/edit.xhtml">
+                <ui:define name="label">Volumi mercato</ui:define>
+                <h:inputText id="volumiMercato"
+                       required="true"
+                          value="#{outputSimulazioneHome.instance.volumiMercato}"
+                           size="26">
+                    <a:support event="onblur" reRender="volumiMercatoField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{outputSimulazioneHome.persist}"
+                       disabled="#{!outputSimulazioneHome.wired}"
+                       rendered="#{!outputSimulazioneHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{outputSimulazioneHome.update}"
+                       rendered="#{outputSimulazioneHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{outputSimulazioneHome.remove}"
+                      immediate="true"
+                       rendered="#{outputSimulazioneHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/OutputSimulazione.xhtml"
+                rendered="#{outputSimulazioneHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty outputSimulazioneFrom ? 'OutputSimulazioneList' : outputSimulazioneFrom}.xhtml"
+                rendered="#{!outputSimulazioneHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Simulazione *" labelClass="required">
+    <div class="association" id="simulazioneParent">
+
+        <h:outputText value="There is no simulazione associated with this outputSimulazione."
+                   rendered="#{outputSimulazioneHome.instance.simulazione == null}"/>
+
+        <rich:dataTable var="_simulazione"
+                   value="#{outputSimulazioneHome.instance.simulazione}"
+                rendered="#{outputSimulazioneHome.instance.simulazione != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="simulazioneTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_simulazione.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Azienda id</f:facet>
+                <h:outputText value="#{_simulazione.azienda.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Data inserimento</f:facet>
+                <h:outputText value="#{_simulazione.dataInserimento}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Domanda mercato id</f:facet>
+                <h:outputText value="#{_simulazione.domandaMercato.id}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{outputSimulazioneHome.instance.simulazione != null ? 'changeParent' : 'selectParent'}" value="#{outputSimulazioneHome.instance.simulazione != null ? 'Change' : 'Select'} simulazione"
+                       view="/SimulazioneList.xhtml">
+                <f:param name="from" value="OutputSimulazioneEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Trimestre simulazione *" labelClass="required">
+    <div class="association" id="trimestreSimulazioneParent">
+
+        <h:outputText value="There is no trimestreSimulazione associated with this outputSimulazione."
+                   rendered="#{outputSimulazioneHome.instance.trimestreSimulazione == null}"/>
+
+        <rich:dataTable var="_trimestreSimulazione"
+                   value="#{outputSimulazioneHome.instance.trimestreSimulazione}"
+                rendered="#{outputSimulazioneHome.instance.trimestreSimulazione != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="trimestreSimulazioneTable">
+            <h:column>
+                <f:facet name="header">Trimestre</f:facet>
+                <h:outputText value="#{_trimestreSimulazione.trimestre}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{outputSimulazioneHome.instance.trimestreSimulazione != null ? 'changeParent' : 'selectParent'}" value="#{outputSimulazioneHome.instance.trimestreSimulazione != null ? 'Change' : 'Select'} trimestreSimulazione"
+                       view="/TrimestreSimulazioneList.xhtml">
+                <f:param name="from" value="OutputSimulazioneEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

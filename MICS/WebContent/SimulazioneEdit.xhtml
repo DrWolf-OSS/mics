@@ -1,0 +1,337 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="simulazione" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{simulazioneHome.managed ? 'Edit' : 'Add'} Simulazione</f:facet>
+
+
+
+
+            <s:decorate id="dataInserimentoField" template="layout/edit.xhtml">
+                <ui:define name="label">Data inserimento</ui:define>
+                <rich:calendar id="dataInserimento"
+                       required="true"
+                          value="#{simulazioneHome.instance.dataInserimento}" datePattern="MM/dd/yyyy" />
+            </s:decorate>
+
+
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{simulazioneHome.persist}"
+                       disabled="#{!simulazioneHome.wired}"
+                       rendered="#{!simulazioneHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{simulazioneHome.update}"
+                       rendered="#{simulazioneHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{simulazioneHome.remove}"
+                      immediate="true"
+                       rendered="#{simulazioneHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Simulazione.xhtml"
+                rendered="#{simulazioneHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty simulazioneFrom ? 'SimulazioneList' : simulazioneFrom}.xhtml"
+                rendered="#{!simulazioneHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Azienda *" labelClass="required">
+    <div class="association" id="aziendaParent">
+
+        <h:outputText value="There is no azienda associated with this simulazione."
+                   rendered="#{simulazioneHome.instance.azienda == null}"/>
+
+        <rich:dataTable var="_azienda"
+                   value="#{simulazioneHome.instance.azienda}"
+                rendered="#{simulazioneHome.instance.azienda != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="aziendaTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_azienda.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Azienda</f:facet>
+                <h:outputText value="#{_azienda.azienda}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{simulazioneHome.instance.azienda != null ? 'changeParent' : 'selectParent'}" value="#{simulazioneHome.instance.azienda != null ? 'Change' : 'Select'} azienda"
+                       view="/AziendaList.xhtml">
+                <f:param name="from" value="SimulazioneEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Dati bilanci">
+        <h:form styleClass="association" id="datiBilanciChildren">
+
+            <h:outputText value="There are no datiBilanci associated with this simulazione."
+                       rendered="#{empty simulazioneHome.datiBilanci}"/>
+
+            <rich:dataTable value="#{simulazioneHome.datiBilanci}"
+                           var="_datiBilancio"
+                      rendered="#{not empty simulazioneHome.datiBilanci}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="datiBilanciTable">
+                <rich:column sortBy="#{_datiBilancio.id.annoBilancio}">
+                    <f:facet name="header">Anno bilancio</f:facet>
+                    <h:outputText value="#{_datiBilancio.id.annoBilancio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.id.simulazioneId}">
+                    <f:facet name="header">Simulazione id</f:facet>
+                    <h:outputText value="#{_datiBilancio.id.simulazioneId}"/>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.avviamento}">
+                    <f:facet name="header">Avviamento</f:facet>
+                    <h:outputText value="#{_datiBilancio.avviamento}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.costiProdGodimentoBeniTerzi}">
+                    <f:facet name="header">Costi prod godimento beni terzi</f:facet>
+                    <h:outputText value="#{_datiBilancio.costiProdGodimentoBeniTerzi}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.costiProduzioneServizi}">
+                    <f:facet name="header">Costi produzione servizi</f:facet>
+                    <h:outputText value="#{_datiBilancio.costiProduzioneServizi}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.costoLavoroMedioComparto}">
+                    <f:facet name="header">Costo lavoro medio comparto</f:facet>
+                    <h:outputText value="#{_datiBilancio.costoLavoroMedioComparto}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.costoLavoroProCapite}">
+                    <f:facet name="header">Costo lavoro pro capite</f:facet>
+                    <h:outputText value="#{_datiBilancio.costoLavoroProCapite}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.costoMateriePrime}">
+                    <f:facet name="header">Costo materie prime</f:facet>
+                    <h:outputText value="#{_datiBilancio.costoMateriePrime}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.costoPersonale}">
+                    <f:facet name="header">Costo personale</f:facet>
+                    <h:outputText value="#{_datiBilancio.costoPersonale}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.debitiBancheSuFatturato}">
+                    <f:facet name="header">Debiti banche su fatturato</f:facet>
+                    <h:outputText value="#{_datiBilancio.debitiBancheSuFatturato}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.ebitda}">
+                    <f:facet name="header">Ebitda</f:facet>
+                    <h:outputText value="#{_datiBilancio.ebitda}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.fatturato}">
+                    <f:facet name="header">Fatturato</f:facet>
+                    <h:outputText value="#{_datiBilancio.fatturato}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.fatturatoComplessivoSettore}">
+                    <f:facet name="header">Fatturato complessivo settore</f:facet>
+                    <h:outputText value="#{_datiBilancio.fatturatoComplessivoSettore}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.numeroDipendenti}">
+                    <f:facet name="header">Numero dipendenti</f:facet>
+                    <h:outputText value="#{_datiBilancio.numeroDipendenti}"/>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.percentualeCostiProduzioneTerritorio}">
+                    <f:facet name="header">Percentuale costi produzione territorio</f:facet>
+                    <h:outputText value="#{_datiBilancio.percentualeCostiProduzioneTerritorio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.percentualeIndottoCongiunturaleTerritorio}">
+                    <f:facet name="header">Percentuale indotto congiunturale territorio</f:facet>
+                    <h:outputText value="#{_datiBilancio.percentualeIndottoCongiunturaleTerritorio}"/>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.produzioneTotaleMercatoRiferimento}">
+                    <f:facet name="header">Produzione totale mercato riferimento</f:facet>
+                    <h:outputText value="#{_datiBilancio.produzioneTotaleMercatoRiferimento}"/>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.quantitaProdotta}">
+                    <f:facet name="header">Quantita prodotta</f:facet>
+                    <h:outputText value="#{_datiBilancio.quantitaProdotta}"/>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.quantitaProdottiStandard}">
+                    <f:facet name="header">Quantita prodotti standard</f:facet>
+                    <h:outputText value="#{_datiBilancio.quantitaProdottiStandard}"/>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.quantitaVendute}">
+                    <f:facet name="header">Quantita vendute</f:facet>
+                    <h:outputText value="#{_datiBilancio.quantitaVendute}"/>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.quotaAmmortamentoBeniImmateriali}">
+                    <f:facet name="header">Quota ammortamento beni immateriali</f:facet>
+                    <h:outputText value="#{_datiBilancio.quotaAmmortamentoBeniImmateriali}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.quotaAmmortamentoBeniMateriali}">
+                    <f:facet name="header">Quota ammortamento beni materiali</f:facet>
+                    <h:outputText value="#{_datiBilancio.quotaAmmortamentoBeniMateriali}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.quotaAmmortamentoImmImmateriali}">
+                    <f:facet name="header">Quota ammortamento imm immateriali</f:facet>
+                    <h:outputText value="#{_datiBilancio.quotaAmmortamentoImmImmateriali}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.quotaAmmortamentoImmMateriali}">
+                    <f:facet name="header">Quota ammortamento imm materiali</f:facet>
+                    <h:outputText value="#{_datiBilancio.quotaAmmortamentoImmMateriali}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.rendimentoInvestimentiSicuri}">
+                    <f:facet name="header">Rendimento investimenti sicuri</f:facet>
+                    <h:outputText value="#{_datiBilancio.rendimentoInvestimentiSicuri}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.roe}">
+                    <f:facet name="header">Roe</f:facet>
+                    <h:outputText value="#{_datiBilancio.roe}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.roi}">
+                    <f:facet name="header">Roi</f:facet>
+                    <h:outputText value="#{_datiBilancio.roi}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.valoreProduzione}">
+                    <f:facet name="header">Valore produzione</f:facet>
+                    <h:outputText value="#{_datiBilancio.valoreProduzione}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+                <rich:column sortBy="#{_datiBilancio.valoreProduzioneTotaleMercatoRiferimento}">
+                    <f:facet name="header">Valore produzione totale mercato riferimento</f:facet>
+                    <h:outputText value="#{_datiBilancio.valoreProduzioneTotaleMercatoRiferimento}">
+                        <f:convertNumber/>
+                    </h:outputText>
+                </rich:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{simulazioneHome.managed}" id="datiBilanci">
+        <div class="actionButtons">
+            <s:button id="adddatiBilancio"
+                   value="Add datiBilancio"
+                    view="/DatiBilancioEdit.xhtml"
+             propagation="none">
+                 <f:param name="simulazioneId"
+                         value="#{simulazioneHome.instance.id}"/>
+                 <f:param name="datiBilancioFrom" value="Simulazione"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+
+    <rich:tab label="Domanda mercato *" labelClass="required">
+    <div class="association" id="domandaMercatoParent">
+
+        <h:outputText value="There is no domandaMercato associated with this simulazione."
+                   rendered="#{simulazioneHome.instance.domandaMercato == null}"/>
+
+        <rich:dataTable var="_domandaMercato"
+                   value="#{simulazioneHome.instance.domandaMercato}"
+                rendered="#{simulazioneHome.instance.domandaMercato != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="domandaMercatoTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_domandaMercato.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Volume mercato anno0</f:facet>
+                <h:outputText value="#{_domandaMercato.volumeMercatoAnno0}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Volume mercato anno1</f:facet>
+                <h:outputText value="#{_domandaMercato.volumeMercatoAnno1}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Volume mercato anno2</f:facet>
+                <h:outputText value="#{_domandaMercato.volumeMercatoAnno2}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{simulazioneHome.instance.domandaMercato != null ? 'changeParent' : 'selectParent'}" value="#{simulazioneHome.instance.domandaMercato != null ? 'Change' : 'Select'} domandaMercato"
+                       view="/DomandaMercatoList.xhtml">
+                <f:param name="from" value="SimulazioneEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

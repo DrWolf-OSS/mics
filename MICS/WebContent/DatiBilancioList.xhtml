@@ -1,0 +1,470 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="datiBilancioSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="DatiBilancio Search Filter" switchType="ajax">
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{datiBilancioList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/DatiBilancioList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">DatiBilancio Search Results (#{empty datiBilancioList.resultList ? 0 : (datiBilancioList.paginated ? datiBilancioList.resultCount : datiBilancioList.resultList.size)})</f:facet>
+    <div class="results" id="datiBilancioList">
+
+    <h:outputText value="The datiBilancio search returned no results."
+               rendered="#{empty datiBilancioList.resultList}"/>
+
+    <rich:dataTable id="datiBilancioList"
+                var="_datiBilancio"
+              value="#{datiBilancioList.resultList}"
+           rendered="#{not empty datiBilancioList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Anno bilancio"/>
+                    <ui:param name="propertyPath" value="datiBilancio.id.annoBilancio"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.id.annoBilancio}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Simulazione id"/>
+                    <ui:param name="propertyPath" value="datiBilancio.id.simulazioneId"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.id.simulazioneId}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Anno bilancio anno"/>
+                    <ui:param name="propertyPath" value="datiBilancio.annoBilancio.anno"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.annoBilancio.anno}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Avviamento"/>
+                    <ui:param name="propertyPath" value="datiBilancio.avviamento"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.avviamento}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Costi prod godimento beni terzi"/>
+                    <ui:param name="propertyPath" value="datiBilancio.costiProdGodimentoBeniTerzi"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.costiProdGodimentoBeniTerzi}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Costi produzione servizi"/>
+                    <ui:param name="propertyPath" value="datiBilancio.costiProduzioneServizi"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.costiProduzioneServizi}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Costo lavoro medio comparto"/>
+                    <ui:param name="propertyPath" value="datiBilancio.costoLavoroMedioComparto"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.costoLavoroMedioComparto}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Costo lavoro pro capite"/>
+                    <ui:param name="propertyPath" value="datiBilancio.costoLavoroProCapite"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.costoLavoroProCapite}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Costo materie prime"/>
+                    <ui:param name="propertyPath" value="datiBilancio.costoMateriePrime"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.costoMateriePrime}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Costo personale"/>
+                    <ui:param name="propertyPath" value="datiBilancio.costoPersonale"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.costoPersonale}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Debiti banche su fatturato"/>
+                    <ui:param name="propertyPath" value="datiBilancio.debitiBancheSuFatturato"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.debitiBancheSuFatturato}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Ebitda"/>
+                    <ui:param name="propertyPath" value="datiBilancio.ebitda"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.ebitda}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Fatturato"/>
+                    <ui:param name="propertyPath" value="datiBilancio.fatturato"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.fatturato}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Fatturato complessivo settore"/>
+                    <ui:param name="propertyPath" value="datiBilancio.fatturatoComplessivoSettore"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.fatturatoComplessivoSettore}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Numero dipendenti"/>
+                    <ui:param name="propertyPath" value="datiBilancio.numeroDipendenti"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.numeroDipendenti}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Percentuale costi produzione territorio"/>
+                    <ui:param name="propertyPath" value="datiBilancio.percentualeCostiProduzioneTerritorio"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.percentualeCostiProduzioneTerritorio}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Percentuale indotto congiunturale territorio"/>
+                    <ui:param name="propertyPath" value="datiBilancio.percentualeIndottoCongiunturaleTerritorio"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.percentualeIndottoCongiunturaleTerritorio}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Produzione totale mercato riferimento"/>
+                    <ui:param name="propertyPath" value="datiBilancio.produzioneTotaleMercatoRiferimento"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.produzioneTotaleMercatoRiferimento}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Quantita prodotta"/>
+                    <ui:param name="propertyPath" value="datiBilancio.quantitaProdotta"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.quantitaProdotta}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Quantita prodotti standard"/>
+                    <ui:param name="propertyPath" value="datiBilancio.quantitaProdottiStandard"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.quantitaProdottiStandard}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Quantita vendute"/>
+                    <ui:param name="propertyPath" value="datiBilancio.quantitaVendute"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.quantitaVendute}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Quota ammortamento beni immateriali"/>
+                    <ui:param name="propertyPath" value="datiBilancio.quotaAmmortamentoBeniImmateriali"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.quotaAmmortamentoBeniImmateriali}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Quota ammortamento beni materiali"/>
+                    <ui:param name="propertyPath" value="datiBilancio.quotaAmmortamentoBeniMateriali"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.quotaAmmortamentoBeniMateriali}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Quota ammortamento imm immateriali"/>
+                    <ui:param name="propertyPath" value="datiBilancio.quotaAmmortamentoImmImmateriali"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.quotaAmmortamentoImmImmateriali}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Quota ammortamento imm materiali"/>
+                    <ui:param name="propertyPath" value="datiBilancio.quotaAmmortamentoImmMateriali"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.quotaAmmortamentoImmMateriali}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Rendimento investimenti sicuri"/>
+                    <ui:param name="propertyPath" value="datiBilancio.rendimentoInvestimentiSicuri"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.rendimentoInvestimentiSicuri}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Roe"/>
+                    <ui:param name="propertyPath" value="datiBilancio.roe"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.roe}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Roi"/>
+                    <ui:param name="propertyPath" value="datiBilancio.roi"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.roi}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Simulazione id"/>
+                    <ui:param name="propertyPath" value="datiBilancio.simulazione.id"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.simulazione.id}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Valore produzione"/>
+                    <ui:param name="propertyPath" value="datiBilancio.valoreProduzione"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.valoreProduzione}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{datiBilancioList}"/>
+                    <ui:param name="propertyLabel" value="Valore produzione totale mercato riferimento"/>
+                    <ui:param name="propertyPath" value="datiBilancio.valoreProduzioneTotaleMercatoRiferimento"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_datiBilancio.valoreProduzioneTotaleMercatoRiferimento}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/#{empty from ? 'DatiBilancio' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="datiBilancioViewId">
+                <f:param name="datiBilancioAnnoBilancio"
+                        value="#{_datiBilancio.id.annoBilancio}"/>
+                <f:param name="datiBilancioSimulazioneId"
+                        value="#{_datiBilancio.id.simulazioneId}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/DatiBilancioEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="datiBilancioEdit"
+                rendered="#{empty from}">
+                <f:param name="datiBilancioAnnoBilancio"
+                        value="#{_datiBilancio.id.annoBilancio}"/>
+                <f:param name="datiBilancioSimulazioneId"
+                        value="#{_datiBilancio.id.simulazioneId}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/DatiBilancioList.xhtml"
+            rendered="#{datiBilancioList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/DatiBilancioList.xhtml"
+            rendered="#{datiBilancioList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{datiBilancioList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/DatiBilancioList.xhtml"
+            rendered="#{datiBilancioList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{datiBilancioList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/DatiBilancioList.xhtml"
+            rendered="#{datiBilancioList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{datiBilancioList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/DatiBilancioEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create datiBilancio">
+            <f:param name="datiBilancioAnnoBilancio"/>
+            <f:param name="datiBilancioSimulazioneId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

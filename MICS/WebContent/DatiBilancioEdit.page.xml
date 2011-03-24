@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd"
+      no-conversation-view-id="/DatiBilancioList.xhtml"
+      login-required="true">
+
+   <begin-conversation join="true" flush-mode="MANUAL"/>
+
+   <action execute="#{datiBilancioHome.wire}"/>
+
+   <param name="datiBilancioFrom"/>
+   <param name="datiBilancioAnnoBilancio" value="#{datiBilancioHome.datiBilancioId.annoBilancio}"/>
+   <param name="datiBilancioSimulazioneId" value="#{datiBilancioHome.datiBilancioId.simulazioneId}"/>
+   <param name="annoBilancioFrom"/>
+   <param name="annoBilancioAnno" value="#{annoBilancioHome.annoBilancioAnno}"/>
+
+   <param name="simulazioneFrom"/>
+   <param name="simulazioneId" value="#{simulazioneHome.simulazioneId}"/>
+   <param name="aziendaFrom"/>
+   <param name="aziendaId" value="#{aziendaHome.aziendaId}"/>
+
+   <param name="domandaMercatoFrom"/>
+   <param name="domandaMercatoId" value="#{domandaMercatoHome.domandaMercatoId}"/>
+
+
+
+
+   <navigation from-action="#{datiBilancioHome.persist}">
+      <rule if-outcome="persisted">
+         <end-conversation/>
+         <redirect view-id="/DatiBilancio.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{datiBilancioHome.update}">
+      <rule if-outcome="updated">
+         <end-conversation/>
+         <redirect view-id="/DatiBilancio.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{datiBilancioHome.remove}">
+      <rule if-outcome="removed">
+         <end-conversation/>
+         <redirect view-id="/DatiBilancioList.xhtml"/>
+      </rule>
+   </navigation>
+
+</page>

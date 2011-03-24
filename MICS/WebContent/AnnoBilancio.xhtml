@@ -1,0 +1,238 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Anno bilancio Details</f:facet>
+
+        <s:decorate id="anno" template="layout/display.xhtml">
+            <ui:define name="label">Anno</ui:define>
+            <h:outputText value="#{annoBilancioHome.instance.anno}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/AnnoBilancioEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty annoBilancioFrom ? 'AnnoBilancioList' : annoBilancioFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Dati bilanci</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="datiBilanciChildren">
+
+        <h:outputText value="There are no datiBilanci associated with this annoBilancio."
+                   rendered="#{empty annoBilancioHome.datiBilanci}"/>
+
+        <rich:dataTable value="#{annoBilancioHome.datiBilanci}"
+                       var="_datiBilancio"
+                  rendered="#{not empty annoBilancioHome.datiBilanci}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="datiBilanciTable">
+            <rich:column sortBy="#{_datiBilancio.id.annoBilancio}">
+                <f:facet name="header">Anno bilancio</f:facet>
+                <h:outputText value="#{_datiBilancio.id.annoBilancio}"/>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.id.simulazioneId}">
+                <f:facet name="header">Simulazione id</f:facet>
+                <h:outputText value="#{_datiBilancio.id.simulazioneId}"/>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.avviamento}">
+                <f:facet name="header">Avviamento</f:facet>
+                <h:outputText value="#{_datiBilancio.avviamento}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.costiProdGodimentoBeniTerzi}">
+                <f:facet name="header">Costi prod godimento beni terzi</f:facet>
+                <h:outputText value="#{_datiBilancio.costiProdGodimentoBeniTerzi}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.costiProduzioneServizi}">
+                <f:facet name="header">Costi produzione servizi</f:facet>
+                <h:outputText value="#{_datiBilancio.costiProduzioneServizi}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.costoLavoroMedioComparto}">
+                <f:facet name="header">Costo lavoro medio comparto</f:facet>
+                <h:outputText value="#{_datiBilancio.costoLavoroMedioComparto}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.costoLavoroProCapite}">
+                <f:facet name="header">Costo lavoro pro capite</f:facet>
+                <h:outputText value="#{_datiBilancio.costoLavoroProCapite}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.costoMateriePrime}">
+                <f:facet name="header">Costo materie prime</f:facet>
+                <h:outputText value="#{_datiBilancio.costoMateriePrime}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.costoPersonale}">
+                <f:facet name="header">Costo personale</f:facet>
+                <h:outputText value="#{_datiBilancio.costoPersonale}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.debitiBancheSuFatturato}">
+                <f:facet name="header">Debiti banche su fatturato</f:facet>
+                <h:outputText value="#{_datiBilancio.debitiBancheSuFatturato}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.ebitda}">
+                <f:facet name="header">Ebitda</f:facet>
+                <h:outputText value="#{_datiBilancio.ebitda}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.fatturato}">
+                <f:facet name="header">Fatturato</f:facet>
+                <h:outputText value="#{_datiBilancio.fatturato}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.fatturatoComplessivoSettore}">
+                <f:facet name="header">Fatturato complessivo settore</f:facet>
+                <h:outputText value="#{_datiBilancio.fatturatoComplessivoSettore}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.numeroDipendenti}">
+                <f:facet name="header">Numero dipendenti</f:facet>
+                <h:outputText value="#{_datiBilancio.numeroDipendenti}"/>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.percentualeCostiProduzioneTerritorio}">
+                <f:facet name="header">Percentuale costi produzione territorio</f:facet>
+                <h:outputText value="#{_datiBilancio.percentualeCostiProduzioneTerritorio}"/>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.percentualeIndottoCongiunturaleTerritorio}">
+                <f:facet name="header">Percentuale indotto congiunturale territorio</f:facet>
+                <h:outputText value="#{_datiBilancio.percentualeIndottoCongiunturaleTerritorio}"/>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.produzioneTotaleMercatoRiferimento}">
+                <f:facet name="header">Produzione totale mercato riferimento</f:facet>
+                <h:outputText value="#{_datiBilancio.produzioneTotaleMercatoRiferimento}"/>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.quantitaProdotta}">
+                <f:facet name="header">Quantita prodotta</f:facet>
+                <h:outputText value="#{_datiBilancio.quantitaProdotta}"/>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.quantitaProdottiStandard}">
+                <f:facet name="header">Quantita prodotti standard</f:facet>
+                <h:outputText value="#{_datiBilancio.quantitaProdottiStandard}"/>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.quantitaVendute}">
+                <f:facet name="header">Quantita vendute</f:facet>
+                <h:outputText value="#{_datiBilancio.quantitaVendute}"/>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.quotaAmmortamentoBeniImmateriali}">
+                <f:facet name="header">Quota ammortamento beni immateriali</f:facet>
+                <h:outputText value="#{_datiBilancio.quotaAmmortamentoBeniImmateriali}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.quotaAmmortamentoBeniMateriali}">
+                <f:facet name="header">Quota ammortamento beni materiali</f:facet>
+                <h:outputText value="#{_datiBilancio.quotaAmmortamentoBeniMateriali}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.quotaAmmortamentoImmImmateriali}">
+                <f:facet name="header">Quota ammortamento imm immateriali</f:facet>
+                <h:outputText value="#{_datiBilancio.quotaAmmortamentoImmImmateriali}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.quotaAmmortamentoImmMateriali}">
+                <f:facet name="header">Quota ammortamento imm materiali</f:facet>
+                <h:outputText value="#{_datiBilancio.quotaAmmortamentoImmMateriali}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.rendimentoInvestimentiSicuri}">
+                <f:facet name="header">Rendimento investimenti sicuri</f:facet>
+                <h:outputText value="#{_datiBilancio.rendimentoInvestimentiSicuri}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.roe}">
+                <f:facet name="header">Roe</f:facet>
+                <h:outputText value="#{_datiBilancio.roe}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.roi}">
+                <f:facet name="header">Roi</f:facet>
+                <h:outputText value="#{_datiBilancio.roi}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.valoreProduzione}">
+                <f:facet name="header">Valore produzione</f:facet>
+                <h:outputText value="#{_datiBilancio.valoreProduzione}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_datiBilancio.valoreProduzioneTotaleMercatoRiferimento}">
+                <f:facet name="header">Valore produzione totale mercato riferimento</f:facet>
+                <h:outputText value="#{_datiBilancio.valoreProduzioneTotaleMercatoRiferimento}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectdatiBilancio"
+                     value="Select"
+                      view="/DatiBilancio.xhtml">
+                    <f:param name="datiBilancioAnnoBilancio"
+                            value="#{_datiBilancio.id.annoBilancio}"/>
+                    <f:param name="datiBilancioSimulazioneId"
+                            value="#{_datiBilancio.id.simulazioneId}"/>
+                    <f:param name="datiBilancioFrom" value="AnnoBilancio"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add datiBilancio"
+                view="/DatiBilancioEdit.xhtml">
+            <f:param name="annoBilancioAnno"
+                    value="#{annoBilancioHome.instance.anno}"/>
+            <f:param name="datiBilancioFrom" value="AnnoBilancio"/>
+        </s:button>
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

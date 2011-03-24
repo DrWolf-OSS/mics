@@ -1,0 +1,298 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Dati bilancio Details</f:facet>
+
+        <s:decorate id="annoBilancio" template="layout/display.xhtml">
+            <ui:define name="label">Anno bilancio</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.id.annoBilancio}"/>
+        </s:decorate>
+        <s:decorate id="simulazioneId" template="layout/display.xhtml">
+            <ui:define name="label">Simulazione id</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.id.simulazioneId}"/>
+        </s:decorate>
+
+        <s:decorate id="avviamento" template="layout/display.xhtml">
+            <ui:define name="label">Avviamento</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.avviamento}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="costiProdGodimentoBeniTerzi" template="layout/display.xhtml">
+            <ui:define name="label">Costi prod godimento beni terzi</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.costiProdGodimentoBeniTerzi}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="costiProduzioneServizi" template="layout/display.xhtml">
+            <ui:define name="label">Costi produzione servizi</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.costiProduzioneServizi}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="costoLavoroMedioComparto" template="layout/display.xhtml">
+            <ui:define name="label">Costo lavoro medio comparto</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.costoLavoroMedioComparto}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="costoLavoroProCapite" template="layout/display.xhtml">
+            <ui:define name="label">Costo lavoro pro capite</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.costoLavoroProCapite}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="costoMateriePrime" template="layout/display.xhtml">
+            <ui:define name="label">Costo materie prime</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.costoMateriePrime}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="costoPersonale" template="layout/display.xhtml">
+            <ui:define name="label">Costo personale</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.costoPersonale}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="debitiBancheSuFatturato" template="layout/display.xhtml">
+            <ui:define name="label">Debiti banche su fatturato</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.debitiBancheSuFatturato}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="ebitda" template="layout/display.xhtml">
+            <ui:define name="label">Ebitda</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.ebitda}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="fatturato" template="layout/display.xhtml">
+            <ui:define name="label">Fatturato</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.fatturato}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="fatturatoComplessivoSettore" template="layout/display.xhtml">
+            <ui:define name="label">Fatturato complessivo settore</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.fatturatoComplessivoSettore}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="numeroDipendenti" template="layout/display.xhtml">
+            <ui:define name="label">Numero dipendenti</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.numeroDipendenti}"/>
+        </s:decorate>
+
+        <s:decorate id="percentualeCostiProduzioneTerritorio" template="layout/display.xhtml">
+            <ui:define name="label">Percentuale costi produzione territorio</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.percentualeCostiProduzioneTerritorio}"/>
+        </s:decorate>
+
+        <s:decorate id="percentualeIndottoCongiunturaleTerritorio" template="layout/display.xhtml">
+            <ui:define name="label">Percentuale indotto congiunturale territorio</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.percentualeIndottoCongiunturaleTerritorio}"/>
+        </s:decorate>
+
+        <s:decorate id="produzioneTotaleMercatoRiferimento" template="layout/display.xhtml">
+            <ui:define name="label">Produzione totale mercato riferimento</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.produzioneTotaleMercatoRiferimento}"/>
+        </s:decorate>
+
+        <s:decorate id="quantitaProdotta" template="layout/display.xhtml">
+            <ui:define name="label">Quantita prodotta</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.quantitaProdotta}"/>
+        </s:decorate>
+
+        <s:decorate id="quantitaProdottiStandard" template="layout/display.xhtml">
+            <ui:define name="label">Quantita prodotti standard</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.quantitaProdottiStandard}"/>
+        </s:decorate>
+
+        <s:decorate id="quantitaVendute" template="layout/display.xhtml">
+            <ui:define name="label">Quantita vendute</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.quantitaVendute}"/>
+        </s:decorate>
+
+        <s:decorate id="quotaAmmortamentoBeniImmateriali" template="layout/display.xhtml">
+            <ui:define name="label">Quota ammortamento beni immateriali</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.quotaAmmortamentoBeniImmateriali}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="quotaAmmortamentoBeniMateriali" template="layout/display.xhtml">
+            <ui:define name="label">Quota ammortamento beni materiali</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.quotaAmmortamentoBeniMateriali}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="quotaAmmortamentoImmImmateriali" template="layout/display.xhtml">
+            <ui:define name="label">Quota ammortamento imm immateriali</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.quotaAmmortamentoImmImmateriali}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="quotaAmmortamentoImmMateriali" template="layout/display.xhtml">
+            <ui:define name="label">Quota ammortamento imm materiali</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.quotaAmmortamentoImmMateriali}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="rendimentoInvestimentiSicuri" template="layout/display.xhtml">
+            <ui:define name="label">Rendimento investimenti sicuri</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.rendimentoInvestimentiSicuri}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="roe" template="layout/display.xhtml">
+            <ui:define name="label">Roe</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.roe}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="roi" template="layout/display.xhtml">
+            <ui:define name="label">Roi</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.roi}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="valoreProduzione" template="layout/display.xhtml">
+            <ui:define name="label">Valore produzione</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.valoreProduzione}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="valoreProduzioneTotaleMercatoRiferimento" template="layout/display.xhtml">
+            <ui:define name="label">Valore produzione totale mercato riferimento</ui:define>
+            <h:outputText value="#{datiBilancioHome.instance.valoreProduzioneTotaleMercatoRiferimento}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/DatiBilancioEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty datiBilancioFrom ? 'DatiBilancioList' : datiBilancioFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Anno bilancio</h:panelGroup>
+        </f:facet>
+    <div class="association" id="annoBilancioParent">
+
+        <h:outputText value="There is no annoBilancio associated with this datiBilancio."
+                   rendered="#{datiBilancioHome.instance.annoBilancio == null}"/>
+
+        <rich:dataTable var="_annoBilancio"
+                   value="#{datiBilancioHome.instance.annoBilancio}"
+                rendered="#{datiBilancioHome.instance.annoBilancio != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="annoBilancioTable">
+            <h:column>
+                <f:facet name="header">Anno</f:facet>
+                <h:outputText value="#{_annoBilancio.anno}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewannoBilancio"
+                     value="View"
+                      view="/AnnoBilancio.xhtml">
+                    <f:param name="annoBilancioAnno"
+                           value="#{_annoBilancio.anno}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Simulazione</h:panelGroup>
+        </f:facet>
+    <div class="association" id="simulazioneParent">
+
+        <h:outputText value="There is no simulazione associated with this datiBilancio."
+                   rendered="#{datiBilancioHome.instance.simulazione == null}"/>
+
+        <rich:dataTable var="_simulazione"
+                   value="#{datiBilancioHome.instance.simulazione}"
+                rendered="#{datiBilancioHome.instance.simulazione != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="simulazioneTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_simulazione.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Azienda id</f:facet>
+                <h:outputText value="#{_simulazione.azienda.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Data inserimento</f:facet>
+                <h:outputText value="#{_simulazione.dataInserimento}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Domanda mercato id</f:facet>
+                <h:outputText value="#{_simulazione.domandaMercato.id}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewsimulazione"
+                     value="View"
+                      view="/Simulazione.xhtml">
+                    <f:param name="simulazioneId"
+                           value="#{_simulazione.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

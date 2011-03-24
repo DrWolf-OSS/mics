@@ -1,0 +1,106 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="domandaMercato" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{domandaMercatoHome.managed ? 'Edit' : 'Add'} Domanda mercato</f:facet>
+
+
+            <s:decorate id="idField" template="layout/edit.xhtml">
+                <ui:define name="label">Id</ui:define>
+                <h:inputText id="id"
+                       required="true"
+                       disabled="#{domandaMercatoHome.managed}"
+                          value="#{domandaMercatoHome.instance.id}">
+                    <a:support event="onblur" reRender="idField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="volumeMercatoAnno0Field" template="layout/edit.xhtml">
+                <ui:define name="label">Volume mercato anno0</ui:define>
+                <h:inputText id="volumeMercatoAnno0"
+                       required="true"
+                          value="#{domandaMercatoHome.instance.volumeMercatoAnno0}"
+                           size="26">
+                    <a:support event="onblur" reRender="volumeMercatoAnno0Field" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="volumeMercatoAnno1Field" template="layout/edit.xhtml">
+                <ui:define name="label">Volume mercato anno1</ui:define>
+                <h:inputText id="volumeMercatoAnno1"
+                       required="true"
+                          value="#{domandaMercatoHome.instance.volumeMercatoAnno1}"
+                           size="26">
+                    <a:support event="onblur" reRender="volumeMercatoAnno1Field" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="volumeMercatoAnno2Field" template="layout/edit.xhtml">
+                <ui:define name="label">Volume mercato anno2</ui:define>
+                <h:inputText id="volumeMercatoAnno2"
+                       required="true"
+                          value="#{domandaMercatoHome.instance.volumeMercatoAnno2}"
+                           size="26">
+                    <a:support event="onblur" reRender="volumeMercatoAnno2Field" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{domandaMercatoHome.persist}"
+                       disabled="#{!domandaMercatoHome.wired}"
+                       rendered="#{!domandaMercatoHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{domandaMercatoHome.update}"
+                       rendered="#{domandaMercatoHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{domandaMercatoHome.remove}"
+                      immediate="true"
+                       rendered="#{domandaMercatoHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/DomandaMercato.xhtml"
+                rendered="#{domandaMercatoHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty domandaMercatoFrom ? 'DomandaMercatoList' : domandaMercatoFrom}.xhtml"
+                rendered="#{!domandaMercatoHome.managed}"/>
+
+        </div>
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

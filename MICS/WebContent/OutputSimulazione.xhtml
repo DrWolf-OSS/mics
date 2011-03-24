@@ -1,0 +1,178 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Output simulazione Details</f:facet>
+
+        <s:decorate id="simulazioneId" template="layout/display.xhtml">
+            <ui:define name="label">Simulazione id</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.id.simulazioneId}"/>
+        </s:decorate>
+        <s:decorate id="trimestreSimulazione" template="layout/display.xhtml">
+            <ui:define name="label">Trimestre simulazione</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.id.trimestreSimulazione}"/>
+        </s:decorate>
+
+        <s:decorate id="domandaLavoro" template="layout/display.xhtml">
+            <ui:define name="label">Domanda lavoro</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.domandaLavoro}"/>
+        </s:decorate>
+
+        <s:decorate id="esuberi" template="layout/display.xhtml">
+            <ui:define name="label">Esuberi</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.esuberi}"/>
+        </s:decorate>
+
+        <s:decorate id="incrementoDaInnovazione" template="layout/display.xhtml">
+            <ui:define name="label">Incremento da innovazione</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.incrementoDaInnovazione}"/>
+        </s:decorate>
+
+        <s:decorate id="incrementoDareputazione" template="layout/display.xhtml">
+            <ui:define name="label">Incremento dareputazione</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.incrementoDareputazione}"/>
+        </s:decorate>
+
+        <s:decorate id="indottoCongiunturale" template="layout/display.xhtml">
+            <ui:define name="label">Indotto congiunturale</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.indottoCongiunturale}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="indottoStrutturale" template="layout/display.xhtml">
+            <ui:define name="label">Indotto strutturale</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.indottoStrutturale}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="productivity" template="layout/display.xhtml">
+            <ui:define name="label">Productivity</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.productivity}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="quotaVolumiAziendali" template="layout/display.xhtml">
+            <ui:define name="label">Quota volumi aziendali</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.quotaVolumiAziendali}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="volumiMercato" template="layout/display.xhtml">
+            <ui:define name="label">Volumi mercato</ui:define>
+            <h:outputText value="#{outputSimulazioneHome.instance.volumiMercato}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/OutputSimulazioneEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty outputSimulazioneFrom ? 'OutputSimulazioneList' : outputSimulazioneFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Simulazione</h:panelGroup>
+        </f:facet>
+    <div class="association" id="simulazioneParent">
+
+        <h:outputText value="There is no simulazione associated with this outputSimulazione."
+                   rendered="#{outputSimulazioneHome.instance.simulazione == null}"/>
+
+        <rich:dataTable var="_simulazione"
+                   value="#{outputSimulazioneHome.instance.simulazione}"
+                rendered="#{outputSimulazioneHome.instance.simulazione != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="simulazioneTable">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_simulazione.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Azienda id</f:facet>
+                <h:outputText value="#{_simulazione.azienda.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Data inserimento</f:facet>
+                <h:outputText value="#{_simulazione.dataInserimento}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Domanda mercato id</f:facet>
+                <h:outputText value="#{_simulazione.domandaMercato.id}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewsimulazione"
+                     value="View"
+                      view="/Simulazione.xhtml">
+                    <f:param name="simulazioneId"
+                           value="#{_simulazione.id}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Trimestre simulazione</h:panelGroup>
+        </f:facet>
+    <div class="association" id="trimestreSimulazioneParent">
+
+        <h:outputText value="There is no trimestreSimulazione associated with this outputSimulazione."
+                   rendered="#{outputSimulazioneHome.instance.trimestreSimulazione == null}"/>
+
+        <rich:dataTable var="_trimestreSimulazione"
+                   value="#{outputSimulazioneHome.instance.trimestreSimulazione}"
+                rendered="#{outputSimulazioneHome.instance.trimestreSimulazione != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="trimestreSimulazioneTable">
+            <h:column>
+                <f:facet name="header">Trimestre</f:facet>
+                <h:outputText value="#{_trimestreSimulazione.trimestre}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewtrimestreSimulazione"
+                     value="View"
+                      view="/TrimestreSimulazione.xhtml">
+                    <f:param name="trimestreSimulazioneTrimestre"
+                           value="#{_trimestreSimulazione.trimestre}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>
