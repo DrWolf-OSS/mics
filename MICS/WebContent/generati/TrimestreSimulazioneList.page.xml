@@ -9,5 +9,6 @@
    <param name="logic" value="#{trimestreSimulazioneList.restrictionLogicOperator}"/>
 
    <param name="from"/>
+   <param name="nomeTrimestre" value="#{trimestreSimulazioneList.trimestreSimulazione.nomeTrimestre}"/>
 
 </page>

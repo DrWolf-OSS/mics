@@ -10,7 +10,7 @@ public class TrimestreSimulazioneList extends EntityQuery<TrimestreSimulazione> 
 
 	private static final String EJBQL = "select trimestreSimulazione from TrimestreSimulazione trimestreSimulazione";
 
-	private static final String[] RESTRICTIONS = {};
+	private static final String[] RESTRICTIONS = { "lower(trimestreSimulazione.nomeTrimestre) like lower(concat(#{trimestreSimulazioneList.trimestreSimulazione.nomeTrimestre},'%'))", };
 
 	private TrimestreSimulazione trimestreSimulazione = new TrimestreSimulazione();
 

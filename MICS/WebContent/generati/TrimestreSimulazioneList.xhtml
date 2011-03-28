@@ -15,6 +15,11 @@
         <rich:simpleTogglePanel label="TrimestreSimulazione Search Filter" switchType="ajax">
 
             <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Nome trimestre</ui:define>
+                <h:inputText id="nomeTrimestre" value="#{trimestreSimulazioneList.trimestreSimulazione.nomeTrimestre}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Match</ui:define>
                 <h:selectOneRadio id="logic" value="#{trimestreSimulazioneList.restrictionLogicOperator}" styleClass="radio">
                     <f:selectItem itemLabel="All" itemValue="and"/>
@@ -51,6 +56,16 @@
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_trimestreSimulazione.trimestre}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{trimestreSimulazioneList}"/>
+                    <ui:param name="propertyLabel" value="Nome trimestre"/>
+                    <ui:param name="propertyPath" value="trimestreSimulazione.nomeTrimestre"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_trimestreSimulazione.nomeTrimestre}"/>
         </h:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>

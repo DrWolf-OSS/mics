@@ -149,56 +149,67 @@ public class DatiBilancio implements Serializable {
 	}
 
 	@Column(name = "avviamento", nullable = false)
+	@NotNull
 	public BigDecimal getAvviamento() {
 		return this.avviamento;
 	}
 
 	@Column(name = "costi_prod_godimento_beni_terzi", nullable = false)
+	@NotNull
 	public BigDecimal getCostiProdGodimentoBeniTerzi() {
 		return this.costiProdGodimentoBeniTerzi;
 	}
 
 	@Column(name = "costi_produzione_serivzi", nullable = false)
+	@NotNull
 	public BigDecimal getCostiProduzioneServizi() {
 		return this.costiProduzioneServizi;
 	}
 
 	@Column(name = "costo_lavoro_medio_comparto", nullable = false)
+	@NotNull
 	public BigDecimal getCostoLavoroMedioComparto() {
 		return this.costoLavoroMedioComparto;
 	}
 
 	@Column(name = "costo_lavoro_pro_capite", nullable = false)
+	@NotNull
 	public BigDecimal getCostoLavoroProCapite() {
 		return this.costoLavoroProCapite;
 	}
 
 	@Column(name = "costo_materie_prime", nullable = false)
+	@NotNull
 	public BigDecimal getCostoMateriePrime() {
 		return this.costoMateriePrime;
 	}
 
 	@Column(name = "costo_personale", nullable = false)
+	@NotNull
 	public BigDecimal getCostoPersonale() {
 		return this.costoPersonale;
 	}
 
 	@Column(name = "debiti_banche_su_fatturato", nullable = false)
+	@NotNull
 	public BigDecimal getDebitiBancheSuFatturato() {
 		return this.debitiBancheSuFatturato;
 	}
 
 	@Column(name = "ebitda", nullable = false)
+	@NotNull
 	public BigDecimal getEbitda() {
 		return this.ebitda;
 	}
 
 	@Column(name = "fatturato", nullable = false)
+	@NotNull
 	public BigDecimal getFatturato() {
 		return this.fatturato;
 	}
 
 	@Column(name = "fatturato_complessivo_settore", nullable = false)
+	@NotNull
 	public BigDecimal getFatturatoComplessivoSettore() {
 		return this.fatturatoComplessivoSettore;
 	}
@@ -213,71 +224,85 @@ public class DatiBilancio implements Serializable {
 	}
 
 	@Column(name = "numero_dipendenti", nullable = false)
+	@NotNull
 	public Integer getNumeroDipendenti() {
 		return this.numeroDipendenti;
 	}
 
 	@Column(name = "percentuale_costi_produzione_territorio", nullable = false)
+	@NotNull
 	public Integer getPercentualeCostiProduzioneTerritorio() {
 		return this.percentualeCostiProduzioneTerritorio;
 	}
 
 	@Column(name = "percentuale_indotto_congiunturale_territorio", nullable = false)
+	@NotNull
 	public Integer getPercentualeIndottoCongiunturaleTerritorio() {
 		return this.percentualeIndottoCongiunturaleTerritorio;
 	}
 
 	@Column(name = "produzione_totale_mercato_riferimento", nullable = false)
+	@NotNull
 	public Integer getProduzioneTotaleMercatoRiferimento() {
 		return this.produzioneTotaleMercatoRiferimento;
 	}
 
 	@Column(name = "quantita_prodotta", nullable = false)
+	@NotNull
 	public Integer getQuantitaProdotta() {
 		return this.quantitaProdotta;
 	}
 
 	@Column(name = "quantita_prodotti_standard", nullable = false)
+	@NotNull
 	public Integer getQuantitaProdottiStandard() {
 		return this.quantitaProdottiStandard;
 	}
 
 	@Column(name = "quantita_vendute", nullable = false)
+	@NotNull
 	public Integer getQuantitaVendute() {
 		return this.quantitaVendute;
 	}
 
 	@Column(name = "quota_ammortamenti_beni_immateriali", nullable = false)
+	@NotNull
 	public BigDecimal getQuotaAmmortamentoBeniImmateriali() {
 		return this.quotaAmmortamentoBeniImmateriali;
 	}
 
 	@Column(name = "quota_ammortamento_beni_materiali", nullable = false)
+	@NotNull
 	public BigDecimal getQuotaAmmortamentoBeniMateriali() {
 		return this.quotaAmmortamentoBeniMateriali;
 	}
 
 	@Column(name = "quota_ammortamento_imm_immateriali", nullable = false)
+	@NotNull
 	public BigDecimal getQuotaAmmortamentoImmImmateriali() {
 		return this.quotaAmmortamentoImmImmateriali;
 	}
 
 	@Column(name = "quota_ammortamento_imm_materiali", nullable = false)
+	@NotNull
 	public BigDecimal getQuotaAmmortamentoImmMateriali() {
 		return this.quotaAmmortamentoImmMateriali;
 	}
 
 	@Column(name = "rendimento_investimenti_sicuri", nullable = false)
+	@NotNull
 	public BigDecimal getRendimentoInvestimentiSicuri() {
 		return this.rendimentoInvestimentiSicuri;
 	}
 
 	@Column(name = "roe", nullable = false)
+	@NotNull
 	public BigDecimal getRoe() {
 		return this.roe;
 	}
 
 	@Column(name = "roi", nullable = false)
+	@NotNull
 	public BigDecimal getRoi() {
 		return this.roi;
 	}
@@ -290,11 +315,13 @@ public class DatiBilancio implements Serializable {
 	}
 
 	@Column(name = "valore_produzione", nullable = false)
+	@NotNull
 	public BigDecimal getValoreProduzione() {
 		return this.valoreProduzione;
 	}
 
 	@Column(name = "valore_produzione_totale_mercato_riferimento", nullable = false)
+	@NotNull
 	public BigDecimal getValoreProduzioneTotaleMercatoRiferimento() {
 		return this.valoreProduzioneTotaleMercatoRiferimento;
 	}

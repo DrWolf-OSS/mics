@@ -18,6 +18,11 @@
             <h:outputText value="#{trimestreSimulazioneHome.instance.trimestre}"/>
         </s:decorate>
 
+        <s:decorate id="nomeTrimestre" template="layout/display.xhtml">
+            <ui:define name="label">Nome trimestre</ui:define>
+            <h:outputText value="#{trimestreSimulazioneHome.instance.nomeTrimestre}"/>
+        </s:decorate>
+
         <div style="clear:both"/>
 
     </rich:panel>

@@ -27,6 +27,16 @@
                 </h:inputText>
             </s:decorate>
 
+
+            <s:decorate id="nomeTrimestreField" template="layout/edit.xhtml">
+                <ui:define name="label">Nome trimestre</ui:define>
+                <h:inputTextarea id="nomeTrimestre"
+                               cols="80"
+                               rows="3"
+                           required="true"
+                              value="#{trimestreSimulazioneHome.instance.nomeTrimestre}"/>
+            </s:decorate>
+
             <div style="clear:both">
                 <span class="required">*</span>
                 required fields

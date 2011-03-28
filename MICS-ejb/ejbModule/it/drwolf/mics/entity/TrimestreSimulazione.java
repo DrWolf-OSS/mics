@@ -18,6 +18,8 @@ public class TrimestreSimulazione implements Serializable {
 
 	private Integer trimestre;
 
+	private String nomeTrimestre;
+
 	public TrimestreSimulazione() {
 	}
 
@@ -48,8 +50,13 @@ public class TrimestreSimulazione implements Serializable {
 		return true;
 	}
 
+	@Column(name = "nome_trimestre", nullable = false)
+	public String getNomeTrimestre() {
+		return this.nomeTrimestre;
+	}
+
 	@Id
-	@Column(name = "anno", nullable = false, unique = true)
+	@Column(name = "trimestre", nullable = false, unique = true)
 	public Integer getTrimestre() {
 		return this.trimestre;
 	}
@@ -61,6 +68,10 @@ public class TrimestreSimulazione implements Serializable {
 		result = prime * result
 				+ ((this.trimestre == null) ? 0 : this.trimestre.hashCode());
 		return result;
+	}
+
+	public void setNomeTrimestre(String nomeTrimestre) {
+		this.nomeTrimestre = nomeTrimestre;
 	}
 
 	public void setTrimestre(Integer anno) {

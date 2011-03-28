@@ -1,10 +1,6 @@
 package it.drwolf.mics.session;
 
-import it.drwolf.mics.entity.OutputSimulazioneId;
-import it.drwolf.mics.entity.OutputSimulazione;
-import it.drwolf.mics.entity.Simulazione;
-import it.drwolf.mics.entity.TrimestreSimulazione;
-
+import it.drwolf.mics.entity.*;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.framework.EntityHome;
@@ -17,8 +13,25 @@ public class OutputSimulazioneHome extends EntityHome<OutputSimulazione> {
 	@In(create = true)
 	TrimestreSimulazioneHome trimestreSimulazioneHome;
 
+	public void setOutputSimulazioneId(OutputSimulazioneId id) {
+		setId(id);
+	}
+
+	public OutputSimulazioneId getOutputSimulazioneId() {
+		return (OutputSimulazioneId) getId();
+	}
+
 	public OutputSimulazioneHome() {
-		this.setOutputSimulazioneId(new OutputSimulazioneId());
+		setOutputSimulazioneId(new OutputSimulazioneId());
+	}
+
+	@Override
+	public boolean isIdDefined() {
+		if (getOutputSimulazioneId().getSimulazioneId() == null)
+			return false;
+		if (getOutputSimulazioneId().getTrimestreSimulazione() == null)
+			return false;
+		return true;
 	}
 
 	@Override
@@ -28,56 +41,35 @@ public class OutputSimulazioneHome extends EntityHome<OutputSimulazione> {
 		return outputSimulazione;
 	}
 
-	public OutputSimulazione getDefinedInstance() {
-		return this.isIdDefined() ? this.getInstance() : null;
-	}
-
-	public OutputSimulazioneId getOutputSimulazioneId() {
-		return (OutputSimulazioneId) this.getId();
-	}
-
-	@Override
-	public boolean isIdDefined() {
-		if (this.getOutputSimulazioneId().getSimulazioneId() == null) {
-			return false;
-		}
-		if (this.getOutputSimulazioneId().getTrimestreSimulazione() == null) {
-			return false;
-		}
-		return true;
-	}
-
-	public boolean isWired() {
-		if (this.getInstance().getSimulazione() == null) {
-			return false;
-		}
-		if (this.getInstance().getTrimestreSimulazione() == null) {
-			return false;
-		}
-		return true;
-	}
-
 	public void load() {
-		if (this.isIdDefined()) {
-			this.wire();
+		if (isIdDefined()) {
+			wire();
 		}
-	}
-
-	public void setOutputSimulazioneId(OutputSimulazioneId id) {
-		this.setId(id);
 	}
 
 	public void wire() {
-		this.getInstance();
-		Simulazione simulazione = this.simulazioneHome.getDefinedInstance();
+		getInstance();
+		Simulazione simulazione = simulazioneHome.getDefinedInstance();
 		if (simulazione != null) {
-			this.getInstance().setSimulazione(simulazione);
+			getInstance().setSimulazione(simulazione);
 		}
-		TrimestreSimulazione trimestreSimulazione = this.trimestreSimulazioneHome
+		TrimestreSimulazione trimestreSimulazione = trimestreSimulazioneHome
 				.getDefinedInstance();
 		if (trimestreSimulazione != null) {
-			this.getInstance().setTrimestreSimulazione(trimestreSimulazione);
+			getInstance().setTrimestreSimulazione(trimestreSimulazione);
 		}
+	}
+
+	public boolean isWired() {
+		if (getInstance().getSimulazione() == null)
+			return false;
+		if (getInstance().getTrimestreSimulazione() == null)
+			return false;
+		return true;
+	}
+
+	public OutputSimulazione getDefinedInstance() {
+		return isIdDefined() ? getInstance() : null;
 	}
 
 }

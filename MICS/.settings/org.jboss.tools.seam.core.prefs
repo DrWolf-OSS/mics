@@ -1,4 +1,4 @@
-#Tue Mar 15 14:31:48 CET 2011
+#Mon Mar 28 14:45:19 CEST 2011
 action.package=it.drwolf.mics.session
 action.sources=/MICS-ejb/ejbModule
 eclipse.preferences.version=1
@@ -11,6 +11,7 @@ seam.project.deployment.type=ear
 seam.project.settings.version=1.1
 seam.project.web.root.folder=/MICS/WebContent
 seam.runtime.name=jboss-seam-2.2.1.Final
+seam.settings.changed.by.user=true
 seam.test.creating=false
 seam.test.project=MICS-test
 test.package=org.domain.mics.test
