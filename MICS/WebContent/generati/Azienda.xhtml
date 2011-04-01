@@ -19,6 +19,11 @@
             <h:outputText value="#{aziendaHome.instance.azienda}"/>
         </s:decorate>
 
+        <s:decorate id="settore" template="layout/display.xhtml">
+            <ui:define name="label">Settore</ui:define>
+            <h:outputText value="#{aziendaHome.instance.settore}"/>
+        </s:decorate>
+
         <div style="clear:both"/>
 
     </rich:panel>

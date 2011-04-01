@@ -10,5 +10,6 @@
 
    <param name="from"/>
    <param name="azienda" value="#{aziendaList.azienda.azienda}"/>
+   <param name="settore" value="#{aziendaList.azienda.settore}"/>
 
 </page>

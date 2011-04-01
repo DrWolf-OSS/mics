@@ -1,0 +1,54 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+    <h1>Simulazione - Step 1</h1>
+    <h2>Dati azienda e parametri iniziali</h2>
+    <h:form id="step-one" styleClass="edit">
+        <rich:panel>
+            <s:decorate id="aziendaField" template="/layout/edit.xhtml">
+                <ui:define name="label">Azienda</ui:define>
+                <h:inputTextarea id="azienda"
+                               cols="80"
+                               rows="1"
+                           required="true"
+                              value="#{simulationBean.azienda}"/>
+            </s:decorate>
+            <s:decorate id="settoreField" template="/layout/edit.xhtml">
+                <ui:define name="label">Settore</ui:define>
+                    <h:selectOneMenu id="settore"
+                        required="true"                 
+                        value="#{simulationBean.settore}">
+                            <s:selectItems value="#{simulationBean.settori}" var="valore"  immediate="true" itemValue="#{valore.nome}"
+                                hideNoSelectionLabel="false" noSelectionLabel="--Scegli--" label="#{valore.testo}"/>
+                    </h:selectOneMenu>
+            </s:decorate>
+            <s:decorate id="ultimoBilancioField" template="/layout/edit.xhtml">
+                <ui:define name="label">Ultimo Bilancio Disponibile</ui:define>
+                    <h:selectOneMenu id="annoBilancio"
+                        required="true"
+                        value="#{simulationBean.anno0}">
+                            <s:selectItems value="#{simulationBean.anni}" var="valore"  immediate="true" itemValue="#{valore}"
+                                hideNoSelectionLabel="false" noSelectionLabel="--Scegli--" label="#{valore}"/>
+                    </h:selectOneMenu>
+            </s:decorate>
+            <div style="clear:both">
+                <span class="required">*</span>
+                Campi obbligatori       
+            </div>
+        </rich:panel>
+        <h:commandButton id="simulazione" value="Secondo Step"
+                               view="/simulatore/SimulazioneStepTwo.xhtml">
+        </h:commandButton>
+    
+    </h:form>
+
+</ui:define>
+</ui:composition>

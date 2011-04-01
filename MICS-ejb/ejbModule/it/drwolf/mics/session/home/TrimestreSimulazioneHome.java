@@ -1,4 +1,4 @@
-package it.drwolf.mics.session;
+package it.drwolf.mics.session.home;
 
 import it.drwolf.mics.entity.*;
 import org.jboss.seam.annotations.Name;

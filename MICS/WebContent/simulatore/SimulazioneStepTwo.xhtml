@@ -1,0 +1,44 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+    <h1>Simulazione - Step 2</h1>
+    <h2>Quadro generale della performance aziendale </h2>
+    <h:form id="step-two" styleClass="edit">
+        <rich:panel>
+             <rich:dataTable value="#{simulationBean.stepTwoFields}" var="field" width="750">
+                   <rich:column  width="33%">
+	                    <f:facet name="header">
+	                        <rich:spacer />
+	                    </f:facet>
+	                    <h:outputText value="#{field.testo}" />
+                   </rich:column>
+                   <rich:columns value="#{simulationBean.anniBilancio}" var="anno"
+                    index="year" id="column#{year}" width="33%">
+                     <f:facet name="header">
+                        <h:outputText value="#{anno}" />
+                    </f:facet>
+                    
+                </rich:columns>
+             </rich:dataTable>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                Campi obbligatori       
+            </div>
+        </rich:panel>
+        <s:button id="simulazione" value="Terzo Step"
+                               view="/simulatore/SimulazioneStepThird.xhtml">
+        </s:button>
+    
+    </h:form>
+
+</ui:define>
+</ui:composition>

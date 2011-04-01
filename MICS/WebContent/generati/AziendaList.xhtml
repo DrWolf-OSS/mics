@@ -20,6 +20,11 @@
             </s:decorate>
 
             <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Settore</ui:define>
+                <h:inputText id="settore" value="#{aziendaList.azienda.settore}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
                 <ui:define name="label">Match</ui:define>
                 <h:selectOneRadio id="logic" value="#{aziendaList.restrictionLogicOperator}" styleClass="radio">
                     <f:selectItem itemLabel="All" itemValue="and"/>
@@ -66,6 +71,16 @@
                 </ui:include>
             </f:facet>
             <h:outputText value="#{_azienda.azienda}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{aziendaList}"/>
+                    <ui:param name="propertyLabel" value="Settore"/>
+                    <ui:param name="propertyPath" value="azienda.settore"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_azienda.settore}"/>
         </h:column>
         <rich:column styleClass="action">
             <f:facet name="header">Action</f:facet>
