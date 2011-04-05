@@ -2,10 +2,11 @@ package it.drwolf.mics.util;
 
 public enum StepTwoFields {
 
-	ROE("ROE"), RIS("Rendimento in investimenti sicuri"), DBF(
-			"Debiti v/banche su fatturato"), ROI("ROI"), CLP(
-			"Costo del lavoro pro-capite"), CMC(
-			"Costo del lavoro, Media del comparto"), EBITDA("EBITDA");
+	roe("ROE"), rendimentoInvestimentiSicuri(
+			"Rendimento in investimenti sicuri"), debitiBancheSuFatturato(
+			"Debiti v/banche su fatturato"), roi("ROI"), costoLavoroProCapite(
+			"Costo del lavoro pro-capite"), costoLavoroMedioComparto(
+			"Costo del lavoro, Media del comparto"), ebitda("EBITDA");
 
 	private String testo;
 

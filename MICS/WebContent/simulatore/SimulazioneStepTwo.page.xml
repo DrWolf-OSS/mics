@@ -6,4 +6,8 @@
     <begin-conversation join="true"/>
  
 
+    <navigation from-action="#{simulationBean.checkStepTwo()}">
+       <redirect view-id="/simulatore/SimulazioneStepThird.xhtml"/>
+    </navigation>
+    
 </page>

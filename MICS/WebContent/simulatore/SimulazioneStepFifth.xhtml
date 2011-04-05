@@ -1,0 +1,38 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+    <h1>Simulazione - Step 5</h1>
+    <h2>Fornitura/Indotto </h2>
+    <h:form id="step-fifth" styleClass="edit">
+        <rich:panel>
+              <s:decorate id="stimaCostiField" template="/layout/edit.xhtml">
+                <ui:define name="label">Stima dei Costi di produzione per materie prime acquistabili sul territorio</ui:define>
+                  <rich:inputNumberSlider  maxValue="100" showInput="true"
+            enableManualInput="true" showBoundaryValues="true" value="#{simulationBean.percentualeCostiProduzioneTerritorio}" />
+            
+            </s:decorate>   
+         <s:decorate id="stimaIndottoField" template="/layout/edit.xhtml">
+                <ui:define name="label">Stima dell’Indotto congiunturale erogato dal territorio</ui:define>
+                  <rich:inputNumberSlider  maxValue="100" showInput="true"
+            enableManualInput="true" showBoundaryValues="true" value="#{simulationBean.percentualeIndottoCongiunturaleTerritorio}" />
+            
+            </s:decorate>   
+            <div style="clear:both">
+                <span class="required">*</span>
+                Campi obbligatori       
+            </div>
+        </rich:panel>
+        <h:commandButton  id="simulazione" value="Avvia la Simulazione" action="#{simulationBean.checkStepFifth()}" />
+    
+    </h:form>
+
+</ui:define>
+</ui:composition>

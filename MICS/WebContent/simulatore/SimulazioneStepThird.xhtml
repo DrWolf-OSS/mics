@@ -1,4 +1,4 @@
-    <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
     xmlns:s="http://jboss.com/products/seam/taglib"
@@ -6,34 +6,29 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:rich="http://richfaces.org/rich"
-    xmlns:a="http://richfaces.org/a4j"
     template="/layout/template.xhtml">
 
 <ui:define name="body">
-    <h1>Simulazione - Step 2</h1>
-    <h2>Quadro generale della performance aziendale </h2>
-    <h:form id="step-two" styleClass="edit">
+    <h1>Simulazione - Step 3</h1>
+    <h2>Concorrenza, Inoovaizone di Prodotto e di Processo</h2>
+    <h:form id="step-third" styleClass="edit">
         <rich:panel>
-             <rich:dataTable id="tabella" value="#{simulationBean.stepTwoFields}" var="field" >
+             <rich:dataTable value="#{simulationBean.stepThirdFields}" var="field" >
                    <rich:column  width="33%">
-	                    <f:facet name="header">
-	                        <rich:spacer />
-	                    </f:facet>
-	                    <h:outputText value="#{field.testo}" style="font-weight: bold;"/>
-	                     <s:span styleClass="required">*</s:span>
+                        <f:facet name="header">
+                            <rich:spacer />
+                        </f:facet>
+                        <h:outputText value="#{field.testo}" style="font-weight: bold;"/>
                    </rich:column>
                    <rich:columns value="#{simulationBean.anniBilancio}" var="anno"
                     index="year" id="column#{year}" width="40%">
                      <f:facet name="header">
                         <h:outputText value="#{anno}" />
                     </f:facet>
-                    <s:decorate id="s#{year}" template="/layout/editColumns.xhtml">
-                       
-                     <h:inputText id="i#{year}" 
+                    <s:decorate  template="/layout/edit.xhtml">    
+                     <h:inputText 
                            required="true"
-                           value="#{simulationBean.getDatiBilancio(anno)[field.nome]}">
-                            <a:support event="onblur" reRender="annoField" bypassUpdates="true" ajaxSingle="true"/>
-                     </h:inputText>     
+                           value="#{simulationBean.getDatiBilancio(anno)[field.nome]}"/>
                     </s:decorate>
                 </rich:columns>
              </rich:dataTable>
@@ -43,7 +38,7 @@
                 Campi obbligatori       
             </div>
         </rich:panel>
-        <h:commandButton  id="simulazione" value="Terzo Step" action="#{simulationBean.checkStepTwo()}" />
+        <h:commandButton id="simulazione" value="Quarto Step" action="#{simulationBean.checkStepThird()}" />
     
     </h:form>
 

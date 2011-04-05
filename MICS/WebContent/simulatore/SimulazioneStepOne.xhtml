@@ -39,14 +39,23 @@
                                 hideNoSelectionLabel="false" noSelectionLabel="--Scegli--" label="#{valore}"/>
                     </h:selectOneMenu>
             </s:decorate>
+            <s:decorate id="solutionTypeField" template="/layout/edit.xhtml">
+                <ui:define name="label">Tipologia di produzione</ui:define>
+                    <h:selectOneMenu id="solutionType"
+                        required="true"
+                        value="#{simulationBean.solutionType}">
+                            <f:selectItem id="scegli" itemLabel="Scegli" itemValue="" />
+                            <f:selectItem id="soluzioneA" itemLabel="Soluzione A" itemValue="A" />
+                            <f:selectItem id="soluzioneB" itemLabel="Soluzione B" itemValue="B" />
+                    </h:selectOneMenu>
+            </s:decorate>
             <div style="clear:both">
                 <span class="required">*</span>
                 Campi obbligatori       
             </div>
         </rich:panel>
-        <h:commandButton id="simulazione" value="Secondo Step"
-                               view="/simulatore/SimulazioneStepTwo.xhtml">
-        </h:commandButton>
+        <h:commandButton id="simulazione" value="Secondo Step" action="#{simulationBean.checkStepOne()}" />
+                         
     
     </h:form>
 
