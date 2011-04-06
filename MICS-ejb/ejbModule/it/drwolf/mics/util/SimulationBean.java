@@ -25,6 +25,10 @@ public class SimulationBean {
 	private Integer percentualeIndottoCongiunturaleTerritorio;
 	private TreeMap<Integer, DatiBilancio> datiBilancio = new TreeMap<Integer, DatiBilancio>();
 
+	public String checkFinalStep() {
+		return "OK";
+	}
+
 	public String checkStepFifth() {
 		return "OK";
 	}

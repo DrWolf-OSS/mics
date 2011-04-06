@@ -19,14 +19,15 @@
                             <rich:spacer />
                         </f:facet>
                         <h:outputText value="#{field.testo}" style="font-weight: bold;"/>
+                        <s:span styleClass="required">*</s:span>
                    </rich:column>
                    <rich:columns value="#{simulationBean.anniBilancio}" var="anno"
                     index="year" id="column#{year}" width="40%">
                      <f:facet name="header">
                         <h:outputText value="#{anno}" />
                     </f:facet>
-                    <s:decorate  template="/layout/edit.xhtml">    
-                     <h:inputText 
+                    <s:decorate id="s#{year}" template="/layout/editColumns.xhtml">    
+                     <h:inputText id="i#{year}" 
                            required="true"
                            value="#{simulationBean.getDatiBilancio(anno)[field.nome]}"/>
                     </s:decorate>
