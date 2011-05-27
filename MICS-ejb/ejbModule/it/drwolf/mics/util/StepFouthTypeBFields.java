@@ -5,8 +5,7 @@ public enum StepFouthTypeBFields {
 	quantitaProdottiStandard("uantitˆ di prodotti standard vendute"), fatturato(
 			"Fatturato"), valoreProduzione("Valore della produzione"), quantitaProdotta(
 			"Quantitˆ prodotta"), numeroDipendenti("Numero dipendenti"), fatturatoComplessivoSettore(
-			"Fatturato complessivo del comparto/settore"), valoreProduzioneTotaleMercatoRiferimento(
-			"Valore della produzione totale del mercato di riferimento");
+			"Fatturato complessivo del comparto/settore");
 
 	private String testo;
 

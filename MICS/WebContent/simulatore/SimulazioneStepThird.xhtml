@@ -10,7 +10,7 @@
 
 <ui:define name="body">
     <h1>Simulazione - Step 3</h1>
-    <h2>Concorrenza, Inoovaizone di Prodotto e di Processo</h2>
+    <h2>Concorrenza, Innovaizone di Prodotto e di Processo</h2>
     <h:form id="step-third" styleClass="edit">
         <rich:panel>
              <rich:dataTable value="#{simulationBean.stepThirdFields}" var="field" >
@@ -21,7 +21,7 @@
                         <h:outputText value="#{field.testo}" style="font-weight: bold;"/>
                         <s:span styleClass="required">*</s:span>
                    </rich:column>
-                   <rich:columns value="#{simulationBean.anniBilancio}" var="anno"
+                   <rich:columns value="#{simulationBean.getAnniBilancio(2)}" var="anno"
                     index="year" id="column#{year}" width="40%">
                      <f:facet name="header">
                         <h:outputText value="#{anno}" />

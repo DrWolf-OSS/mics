@@ -6,8 +6,7 @@ public enum StepFourthTypeAFields {
 			"Costi di produzione per servizi"), costoPersonale(
 			"Costo del personale"), costoMateriePrime(
 			"Costo delle materie prime e di consumo"), numeroDipendenti(
-			"Numero dipendenti"), quantitaVendute("Quantitˆ vendute"), produzioneTotaleMercatoRiferimento(
-			"Produzione totale del mercato di riferimento");
+			"Numero dipendenti"), quantitaVendute("Quantitˆ vendute");
 
 	private String testo;
 

@@ -1,6 +1,7 @@
 package it.drwolf.mics.util;
 
 import it.drwolf.mics.entity.DatiBilancio;
+import it.drwolf.mics.entity.DomandaMercato;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +25,7 @@ public class SimulationBean {
 	private Integer percentualeCostiProduzioneTerritorio;
 	private Integer percentualeIndottoCongiunturaleTerritorio;
 	private TreeMap<Integer, DatiBilancio> datiBilancio = new TreeMap<Integer, DatiBilancio>();
+	private DomandaMercato domandaMercato;
 
 	public String checkFinalStep() {
 		return "OK";
@@ -49,20 +51,20 @@ public class SimulationBean {
 		return "OK";
 	}
 
-	public List<Integer> getAnni() {
+	public List<Integer> getAnni(int indice) {
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		Calendar cal = Calendar.getInstance();
 		int currentYear = cal.get(Calendar.YEAR);
-		for (int i = 1; i < 4; i++) {
+		for (int i = 1; i < indice; i++) {
 			lista.add(currentYear - i);
 		}
 
 		return lista;
 	}
 
-	public List<Integer> getAnniBilancio() {
+	public List<Integer> getAnniBilancio(int indice) {
 		ArrayList<Integer> lista = new ArrayList<Integer>();
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < indice; i++) {
 			lista.add(this.anno0 - i);
 		}
 		return lista;
@@ -70,6 +72,10 @@ public class SimulationBean {
 
 	public Integer getAnno0() {
 		return this.anno0;
+	}
+
+	public Integer getAnnoSimulazione(int indice) {
+		return this.anno0 + indice;
 	}
 
 	public String getAzienda() {
@@ -84,15 +90,19 @@ public class SimulationBean {
 
 	}
 
+	public DomandaMercato getDomandaMercato() {
+		return this.domandaMercato;
+	}
+
 	public Integer getPercentualeCostiProduzioneTerritorio() {
 		return this.percentualeCostiProduzioneTerritorio;
 	}
 
-	// Step Two
-
 	public Integer getPercentualeIndottoCongiunturaleTerritorio() {
 		return this.percentualeIndottoCongiunturaleTerritorio;
 	}
+
+	// Step Two
 
 	public String getSettore() {
 		return this.settore;
@@ -129,6 +139,10 @@ public class SimulationBean {
 
 	public void setAzienda(String azienda) {
 		this.azienda = azienda;
+	}
+
+	public void setDomandaMercato(DomandaMercato domandaMercato) {
+		this.domandaMercato = domandaMercato;
 	}
 
 	public void setPercentualeCostiProduzioneTerritorio(

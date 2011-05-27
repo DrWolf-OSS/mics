@@ -50,15 +50,11 @@ public class DatiBilancio implements Serializable {
 
 	private BigDecimal quotaAmmortamentoBeniImmateriali;
 
-	// Innovazioni di prodotto
+	// Innovazioni di prodotto / processo
 
 	private BigDecimal avviamento;
 
-	private BigDecimal quotaAmmortamentoImmImmateriali;
-
-	// Innovazioni di processo
-
-	private BigDecimal quotaAmmortamentoImmMateriali;
+	private BigDecimal quotaAmmortamentoAvviamento;
 
 	// Produttivita’ media del lavoro/rendimento dei dipendenti
 
@@ -265,6 +261,12 @@ public class DatiBilancio implements Serializable {
 		return this.quantitaVendute;
 	}
 
+	@Column(name = "quota_ammortamento_avviamento", nullable = false)
+	@NotNull
+	public BigDecimal getQuotaAmmortamentoAvviamento() {
+		return this.quotaAmmortamentoAvviamento;
+	}
+
 	@Column(name = "quota_ammortamenti_beni_immateriali", nullable = false)
 	@NotNull
 	public BigDecimal getQuotaAmmortamentoBeniImmateriali() {
@@ -275,18 +277,6 @@ public class DatiBilancio implements Serializable {
 	@NotNull
 	public BigDecimal getQuotaAmmortamentoBeniMateriali() {
 		return this.quotaAmmortamentoBeniMateriali;
-	}
-
-	@Column(name = "quota_ammortamento_imm_immateriali", nullable = false)
-	@NotNull
-	public BigDecimal getQuotaAmmortamentoImmImmateriali() {
-		return this.quotaAmmortamentoImmImmateriali;
-	}
-
-	@Column(name = "quota_ammortamento_imm_materiali", nullable = false)
-	@NotNull
-	public BigDecimal getQuotaAmmortamentoImmMateriali() {
-		return this.quotaAmmortamentoImmMateriali;
 	}
 
 	@Column(name = "rendimento_investimenti_sicuri", nullable = false)
@@ -419,6 +409,11 @@ public class DatiBilancio implements Serializable {
 		this.quantitaVendute = quantitaVendute;
 	}
 
+	public void setQuotaAmmortamentoAvviamento(
+			BigDecimal quotaAmmortamentoImmImmateriali) {
+		this.quotaAmmortamentoAvviamento = quotaAmmortamentoImmImmateriali;
+	}
+
 	public void setQuotaAmmortamentoBeniImmateriali(
 			BigDecimal quotaAmmortamentoBeniImmateriali) {
 		this.quotaAmmortamentoBeniImmateriali = quotaAmmortamentoBeniImmateriali;
@@ -427,16 +422,6 @@ public class DatiBilancio implements Serializable {
 	public void setQuotaAmmortamentoBeniMateriali(
 			BigDecimal quotaAmmortamentoBeniMateriali) {
 		this.quotaAmmortamentoBeniMateriali = quotaAmmortamentoBeniMateriali;
-	}
-
-	public void setQuotaAmmortamentoImmImmateriali(
-			BigDecimal quotaAmmortamentoImmImmateriali) {
-		this.quotaAmmortamentoImmImmateriali = quotaAmmortamentoImmImmateriali;
-	}
-
-	public void setQuotaAmmortamentoImmMateriali(
-			BigDecimal quotaAmmortamentoImmMateriali) {
-		this.quotaAmmortamentoImmMateriali = quotaAmmortamentoImmMateriali;
 	}
 
 	public void setRendimentoInvestimentiSicuri(

@@ -22,7 +22,7 @@
 	                    <h:outputText value="#{field.testo}" style="font-weight: bold;"/>
 	                     <s:span styleClass="required">*</s:span>
                    </rich:column>
-                   <rich:columns value="#{simulationBean.anniBilancio}" var="anno"
+                   <rich:columns value="#{simulationBean.getAnniBilancio(2)}" var="anno"
                     index="year" id="column#{year}" width="40%">
                      <f:facet name="header">
                         <h:outputText value="#{anno}" />
