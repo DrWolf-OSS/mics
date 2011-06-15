@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.validator.NotNull;
-
 @Entity
 @Table(name = "dati_bilancio")
 public class DatiBilancio implements Serializable {
@@ -138,180 +136,163 @@ public class DatiBilancio implements Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "anno", nullable = false, insertable = false, updatable = false)
-	@NotNull
+	@JoinColumn(name = "anno", nullable = true, insertable = false, updatable = false)
 	public AnnoBilancio getAnnoBilancio() {
 		return this.annoBilancio;
 	}
 
-	@Column(name = "avviamento", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "avviamento", nullable = true)
 	public BigDecimal getAvviamento() {
 		return this.avviamento;
 	}
 
-	@Column(name = "costi_prod_godimento_beni_terzi", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "costi_prod_godimento_beni_terzi", nullable = true)
 	public BigDecimal getCostiProdGodimentoBeniTerzi() {
 		return this.costiProdGodimentoBeniTerzi;
 	}
 
-	@Column(name = "costi_produzione_serivzi", nullable = false)
-	@NotNull
+	@Column(name = "costi_produzione_serivzi", nullable = true)
 	public BigDecimal getCostiProduzioneServizi() {
 		return this.costiProduzioneServizi;
 	}
 
-	@Column(name = "costo_lavoro_medio_comparto", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "costo_lavoro_medio_comparto", nullable = true)
 	public BigDecimal getCostoLavoroMedioComparto() {
 		return this.costoLavoroMedioComparto;
 	}
 
-	@Column(name = "costo_lavoro_pro_capite", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "costo_lavoro_pro_capite", nullable = true)
 	public BigDecimal getCostoLavoroProCapite() {
 		return this.costoLavoroProCapite;
 	}
 
-	@Column(name = "costo_materie_prime", nullable = false)
-	@NotNull
+	@Column(name = "costo_materie_prime", nullable = true)
 	public BigDecimal getCostoMateriePrime() {
 		return this.costoMateriePrime;
 	}
 
-	@Column(name = "costo_personale", nullable = false)
-	@NotNull
+	@Column(name = "costo_personale", nullable = true)
 	public BigDecimal getCostoPersonale() {
 		return this.costoPersonale;
 	}
 
-	@Column(name = "debiti_banche_su_fatturato", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "debiti_banche_su_fatturato", nullable = true)
 	public BigDecimal getDebitiBancheSuFatturato() {
 		return this.debitiBancheSuFatturato;
 	}
 
-	@Column(name = "ebitda", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "ebitda", nullable = true)
 	public BigDecimal getEbitda() {
 		return this.ebitda;
 	}
 
-	@Column(name = "fatturato", nullable = false)
-	@NotNull
+	@Column(name = "fatturato", nullable = true)
 	public BigDecimal getFatturato() {
 		return this.fatturato;
 	}
 
-	@Column(name = "fatturato_complessivo_settore", nullable = false)
-	@NotNull
+	@Column(name = "fatturato_complessivo_settore", nullable = true)
 	public BigDecimal getFatturatoComplessivoSettore() {
 		return this.fatturatoComplessivoSettore;
 	}
 
 	@EmbeddedId
 	@AttributeOverrides({
-			@AttributeOverride(name = "simulazioneId", column = @Column(name = "id_Simulazione", nullable = false)),
-			@AttributeOverride(name = "annoBilancio", column = @Column(name = "anno", nullable = false)) })
-	@NotNull
+			@AttributeOverride(name = "simulazioneId", column = @Column(name = "id_Simulazione", nullable = true)),
+			@AttributeOverride(name = "annoBilancio", column = @Column(name = "anno", nullable = true)) })
 	public DatiBilancioId getId() {
 		return this.id;
 	}
 
-	@Column(name = "numero_dipendenti", nullable = false)
-	@NotNull
+	@Column(name = "numero_dipendenti", nullable = true)
 	public Integer getNumeroDipendenti() {
 		return this.numeroDipendenti;
 	}
 
-	@Column(name = "percentuale_costi_produzione_territorio", nullable = false)
-	@NotNull
+	@Column(name = "percentuale_costi_produzione_territorio", nullable = true)
 	public Integer getPercentualeCostiProduzioneTerritorio() {
 		return this.percentualeCostiProduzioneTerritorio;
 	}
 
-	@Column(name = "percentuale_indotto_congiunturale_territorio", nullable = false)
-	@NotNull
+	@Column(name = "percentuale_indotto_congiunturale_territorio", nullable = true)
 	public Integer getPercentualeIndottoCongiunturaleTerritorio() {
 		return this.percentualeIndottoCongiunturaleTerritorio;
 	}
 
-	@Column(name = "produzione_totale_mercato_riferimento", nullable = false)
-	@NotNull
+	@Column(name = "produzione_totale_mercato_riferimento", nullable = true)
 	public Integer getProduzioneTotaleMercatoRiferimento() {
 		return this.produzioneTotaleMercatoRiferimento;
 	}
 
-	@Column(name = "quantita_prodotta", nullable = false)
-	@NotNull
+	@Column(name = "quantita_prodotta", nullable = true)
 	public Integer getQuantitaProdotta() {
 		return this.quantitaProdotta;
 	}
 
-	@Column(name = "quantita_prodotti_standard", nullable = false)
-	@NotNull
+	@Column(name = "quantita_prodotti_standard", nullable = true)
 	public Integer getQuantitaProdottiStandard() {
 		return this.quantitaProdottiStandard;
 	}
 
-	@Column(name = "quantita_vendute", nullable = false)
-	@NotNull
+	@Column(name = "quantita_vendute", nullable = true)
 	public Integer getQuantitaVendute() {
 		return this.quantitaVendute;
 	}
 
-	@Column(name = "quota_ammortamento_avviamento", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "quota_ammortamento_avviamento", nullable = true)
 	public BigDecimal getQuotaAmmortamentoAvviamento() {
 		return this.quotaAmmortamentoAvviamento;
 	}
 
-	@Column(name = "quota_ammortamenti_beni_immateriali", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "quota_ammortamenti_beni_immateriali", nullable = true)
 	public BigDecimal getQuotaAmmortamentoBeniImmateriali() {
 		return this.quotaAmmortamentoBeniImmateriali;
 	}
 
-	@Column(name = "quota_ammortamento_beni_materiali", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "quota_ammortamento_beni_materiali", nullable = true)
 	public BigDecimal getQuotaAmmortamentoBeniMateriali() {
 		return this.quotaAmmortamentoBeniMateriali;
 	}
 
-	@Column(name = "rendimento_investimenti_sicuri", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "rendimento_investimenti_sicuri", nullable = true)
 	public BigDecimal getRendimentoInvestimentiSicuri() {
 		return this.rendimentoInvestimentiSicuri;
 	}
 
-	@Column(name = "roe", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "roe", nullable = true)
 	public BigDecimal getRoe() {
 		return this.roe;
 	}
 
-	@Column(name = "roi", nullable = false)
-	@NotNull
+	// deve essere not null
+	@Column(name = "roi", nullable = true)
 	public BigDecimal getRoi() {
 		return this.roi;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_simulazione", nullable = false, insertable = false, updatable = false)
-	@NotNull
+	@JoinColumn(name = "id_simulazione", nullable = true, insertable = false, updatable = false)
 	public Simulazione getSimulazione() {
 		return this.simulazione;
 	}
 
-	@Column(name = "valore_produzione", nullable = false)
-	@NotNull
+	@Column(name = "valore_produzione", nullable = true)
 	public BigDecimal getValoreProduzione() {
 		return this.valoreProduzione;
 	}
 
-	@Column(name = "valore_produzione_totale_mercato_riferimento", nullable = false)
-	@NotNull
+	@Column(name = "valore_produzione_totale_mercato_riferimento", nullable = true)
 	public BigDecimal getValoreProduzioneTotaleMercatoRiferimento() {
 		return this.valoreProduzioneTotaleMercatoRiferimento;
 	}

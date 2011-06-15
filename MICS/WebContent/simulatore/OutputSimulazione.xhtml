@@ -9,8 +9,108 @@
     template="/layout/template.xhtml">
 
 <ui:define name="body">
-    <h1>Risultati Simulazione - Step 5</h1>
+    <h1>Risultati Simulazione</h1>
         <rich:panel>
+        <rich:dataTable>
+            <f:facet name="header">
+                <h:outputText value="Indicatori Produzione Aziendale" />
+            </f:facet>        
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Incremento da Reputazione" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Incremento da Innovazione di Prodotto" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Productivity" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Volumi di Mercato" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+        </rich:dataTable>
+
+        <rich:spacer />
+        
+        <rich:dataTable>
+            <f:facet name="header">
+                <h:outputText value="Indicatori Occupazionali" />
+            </f:facet>        
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Domanda Lavoro" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Incremento Occupazionale" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Esuberi" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Lavoratori in Forza" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+        </rich:dataTable>       
+
+        <rich:spacer />
+
+        <rich:dataTable>
+            <f:facet name="header">
+                <h:outputText value="Indotto" />
+            </f:facet>        
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Indotto Congiunturale" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Indotto Strutturale" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Indotto Territoriale" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Forniture Esterne" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Acquisti Totali" />
+                    </f:facet>
+                    <h:outputText value=""  />
+            </rich:column>
+        </rich:dataTable>
+        <div style="clear:both" />        
         </rich:panel>
 
 </ui:define>

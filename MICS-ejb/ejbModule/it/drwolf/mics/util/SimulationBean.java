@@ -1,21 +1,36 @@
 package it.drwolf.mics.util;
 
+import it.drwolf.mics.entity.AnnoBilancio;
+import it.drwolf.mics.entity.Azienda;
 import it.drwolf.mics.entity.DatiBilancio;
+import it.drwolf.mics.entity.DatiBilancioId;
 import it.drwolf.mics.entity.DomandaMercato;
+import it.drwolf.mics.entity.Simulazione;
+import it.drwolf.mics.session.home.DatiBilancioHome;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
 
+import javax.persistence.EntityManager;
+
 import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
 @Name("simulationBean")
 @Scope(ScopeType.CONVERSATION)
 public class SimulationBean {
+
+	@In
+	EntityManager entityManager;
+
+	@In(create = true)
+	DatiBilancioHome datiBilancioHome;
 
 	// Step One
 	private String azienda;
@@ -25,9 +40,43 @@ public class SimulationBean {
 	private Integer percentualeCostiProduzioneTerritorio;
 	private Integer percentualeIndottoCongiunturaleTerritorio;
 	private TreeMap<Integer, DatiBilancio> datiBilancio = new TreeMap<Integer, DatiBilancio>();
-	private DomandaMercato domandaMercato;
+	private DomandaMercato domandaMercato = new DomandaMercato();
 
 	public String checkFinalStep() {
+		// prima dovresi verificare la correttezza dei dati
+		// tipo la congruenza dei dati di bilancio
+
+		// a questo punto dovrei persistere
+		// Persisto l'azienda
+		Azienda azienda = new Azienda();
+		azienda.setAzienda(this.azienda);
+		azienda.setSettore(this.settore);
+		this.entityManager.persist(azienda);
+
+		// salvo la domanda di mercato
+		this.entityManager.persist(this.domandaMercato);
+
+		// poi persisto al Simulazione
+		Simulazione simulazione = new Simulazione();
+		simulazione.setDataInserimento(new Date());
+		simulazione.setAzienda(azienda);
+		this.entityManager.persist(simulazione);
+
+		// a questo punto devo salvare i Dati di Bilancio
+		for (Integer anno : this.datiBilancio.keySet()) {
+			AnnoBilancio annoBilancio = this.entityManager.find(
+					AnnoBilancio.class, anno);
+			DatiBilancioId datiBilancioId = new DatiBilancioId(
+					simulazione.getId(), anno);
+			DatiBilancio datiBilancio = this.datiBilancio.get(anno);
+			datiBilancio.setAnnoBilancio(annoBilancio);
+			datiBilancio.setSimulazione(simulazione);
+			datiBilancio.setId(datiBilancioId);
+			// this.entityManager.persist(datiBilancio);
+			this.datiBilancioHome.setInstance(datiBilancio);
+			this.datiBilancioHome.persist();
+		}
+
 		return "OK";
 	}
 
