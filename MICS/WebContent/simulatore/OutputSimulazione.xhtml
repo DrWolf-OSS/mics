@@ -10,11 +10,17 @@
 
 <ui:define name="body">
     <h1>Risultati Simulazione</h1>
-        <rich:panel>
-        <rich:dataTable>
+        <rich:panel >
+        <rich:dataTable value="#{trimestreSimulazioneList.resultList}" var="trimestre">
             <f:facet name="header">
                 <h:outputText value="Indicatori Produzione Aziendale" />
             </f:facet>        
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Periodo" />
+                    </f:facet>
+                    <h:outputText value="#{trimestre.nomeTrimestre} Trimestre"  />
+            </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Incremento da Reputazione" />
@@ -43,7 +49,13 @@
 
         <rich:spacer />
         
-        <rich:dataTable>
+        <rich:dataTable  value="#{trimestreSimulazioneList.resultList}" var="trimestre">
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Periodo" />
+                    </f:facet>
+                    <h:outputText value="#{trimestre.nomeTrimestre} Trimestre"  />
+            </rich:column>
             <f:facet name="header">
                 <h:outputText value="Indicatori Occupazionali" />
             </f:facet>        
@@ -75,7 +87,13 @@
 
         <rich:spacer />
 
-        <rich:dataTable>
+        <rich:dataTable value="#{trimestreSimulazioneList.resultList}" var="trimestre">
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Periodo" />
+                    </f:facet>
+                    <h:outputText value="#{trimestre.nomeTrimestre} Trimestre"  />
+            </rich:column>
             <f:facet name="header">
                 <h:outputText value="Indotto" />
             </f:facet>        
