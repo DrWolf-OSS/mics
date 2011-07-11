@@ -6,6 +6,7 @@ import it.drwolf.mics.entity.DatiBilancio;
 import it.drwolf.mics.entity.DatiBilancioId;
 import it.drwolf.mics.entity.DomandaMercato;
 import it.drwolf.mics.entity.Simulazione;
+import it.drwolf.mics.model.MiICSiThinkModel;
 import it.drwolf.mics.session.home.DatiBilancioHome;
 
 import java.util.ArrayList;
@@ -210,5 +211,15 @@ public class SimulationBean {
 
 	public void setSolutionType(String solutionType) {
 		this.solutionType = solutionType;
+	}
+
+	public void startSimulation() {
+		System.out.println("Avvio la simulazione");
+		System.out.println(this.datiBilancioHome.getInstance().getId());
+
+		MiICSiThinkModel micsModel = new MiICSiThinkModel();
+		micsModel.execute(this.datiBilancioHome.getInstance(),
+				this.domandaMercato);
+
 	}
 }

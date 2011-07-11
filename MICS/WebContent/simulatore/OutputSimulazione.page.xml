@@ -4,4 +4,6 @@
       xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd">
 
     <begin-conversation join="true"/>
+    
+    <action execute="#{simulationBean.startSimulation()}"/>
 </page>
