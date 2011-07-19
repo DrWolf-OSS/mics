@@ -5,7 +5,9 @@ import it.drwolf.mics.entity.Azienda;
 import it.drwolf.mics.entity.DatiBilancio;
 import it.drwolf.mics.entity.DatiBilancioId;
 import it.drwolf.mics.entity.DomandaMercato;
+import it.drwolf.mics.entity.OutputSimulazione;
 import it.drwolf.mics.entity.Simulazione;
+import it.drwolf.mics.entity.TrimestreSimulazione;
 import it.drwolf.mics.model.MiICSiThinkModel;
 import it.drwolf.mics.session.home.DatiBilancioHome;
 
@@ -42,6 +44,8 @@ public class SimulationBean {
 	private Integer percentualeIndottoCongiunturaleTerritorio;
 	private TreeMap<Integer, DatiBilancio> datiBilancio = new TreeMap<Integer, DatiBilancio>();
 	private DomandaMercato domandaMercato = new DomandaMercato();
+
+	private ArrayList<OutputSimulazione> risultati = new ArrayList<OutputSimulazione>();
 
 	public String checkFinalStep() {
 		// prima dovresi verificare la correttezza dei dati
@@ -152,6 +156,19 @@ public class SimulationBean {
 		return this.percentualeIndottoCongiunturaleTerritorio;
 	}
 
+	public ArrayList<OutputSimulazione> getRisultati() {
+		return this.risultati;
+	}
+
+	public OutputSimulazione getRisultatiTrimestre(TrimestreSimulazione ts) {
+		for (OutputSimulazione os : this.risultati) {
+			if (os.getTrimestreSimulazione().equals(ts)) {
+				return os;
+			}
+		}
+		return null;
+	}
+
 	// Step Two
 
 	public String getSettore() {
@@ -205,6 +222,10 @@ public class SimulationBean {
 		this.percentualeIndottoCongiunturaleTerritorio = percentualeIndottoCongiunturaleTerritorio;
 	}
 
+	public void setRisultati(ArrayList<OutputSimulazione> risultati) {
+		this.risultati = risultati;
+	}
+
 	public void setSettore(String settore) {
 		this.settore = settore;
 	}
@@ -217,8 +238,9 @@ public class SimulationBean {
 		System.out.println("Avvio la simulazione");
 		System.out.println(this.datiBilancioHome.getInstance().getId());
 
-		MiICSiThinkModel micsModel = new MiICSiThinkModel();
-		micsModel.execute(this.datiBilancioHome.getInstance(),
+		MiICSiThinkModel micsModel = new MiICSiThinkModel(this.entityManager,
+				new Double(this.getPercentualeIndottoCongiunturaleTerritorio()));
+		this.risultati = micsModel.execute(this.datiBilancioHome.getInstance(),
 				this.domandaMercato);
 
 	}

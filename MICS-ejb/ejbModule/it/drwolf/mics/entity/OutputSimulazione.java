@@ -40,7 +40,7 @@ public class OutputSimulazione implements Serializable {
 
 	private BigDecimal volumiMercato;
 
-	private BigDecimal productivity;
+	private Double productivity;
 
 	// Indicatori occupazionali
 
@@ -48,11 +48,24 @@ public class OutputSimulazione implements Serializable {
 
 	private Integer esuberi;
 
+	private Integer lavoratoriInForza;
+
 	// Indotto
 
 	private BigDecimal indottoCongiunturale;
 
 	private BigDecimal indottoStrutturale;
+
+	private BigDecimal acquistiTotali;
+
+	private BigDecimal indottoTerritoriale;
+
+	private BigDecimal fornitureEsterne;
+
+	@Column(name = "acquisti_totali", nullable = false)
+	public BigDecimal getAcquistiTotali() {
+		return this.acquistiTotali;
+	}
 
 	@Column(name = "domanda_lavoro", nullable = false)
 	public Integer getDomandaLavoro() {
@@ -62,6 +75,11 @@ public class OutputSimulazione implements Serializable {
 	@Column(name = "esuberi", nullable = false)
 	public Integer getEsuberi() {
 		return this.esuberi;
+	}
+
+	@Column(name = "forniture_esterne", nullable = false)
+	public BigDecimal getFornitureEsterne() {
+		return this.fornitureEsterne;
 	}
 
 	@EmbeddedId
@@ -93,8 +111,18 @@ public class OutputSimulazione implements Serializable {
 		return this.indottoStrutturale;
 	}
 
+	@Column(name = "indotto_territoriale", nullable = false)
+	public BigDecimal getIndottoTerritoriale() {
+		return this.indottoTerritoriale;
+	}
+
+	@Column(name = "lavoratori_in_forza", nullable = false)
+	public Integer getLavoratoriInForza() {
+		return this.lavoratoriInForza;
+	}
+
 	@Column(name = "productivity", nullable = false)
-	public BigDecimal getProductivity() {
+	public Double getProductivity() {
 		return this.productivity;
 	}
 
@@ -122,12 +150,20 @@ public class OutputSimulazione implements Serializable {
 		return this.volumiMercato;
 	}
 
+	public void setAcquistiTotali(BigDecimal acquistiTotali) {
+		this.acquistiTotali = acquistiTotali;
+	}
+
 	public void setDomandaLavoro(Integer domandaLavoro) {
 		this.domandaLavoro = domandaLavoro;
 	}
 
 	public void setEsuberi(Integer esuberi) {
 		this.esuberi = esuberi;
+	}
+
+	public void setFornitureEsterne(BigDecimal fornitureEsterne) {
+		this.fornitureEsterne = fornitureEsterne;
 	}
 
 	public void setId(OutputSimulazioneId id) {
@@ -150,7 +186,15 @@ public class OutputSimulazione implements Serializable {
 		this.indottoStrutturale = indottoStrutturale;
 	}
 
-	public void setProductivity(BigDecimal productivity) {
+	public void setIndottoTerritoriale(BigDecimal indottoTerritoriale) {
+		this.indottoTerritoriale = indottoTerritoriale;
+	}
+
+	public void setLavoratoriInForza(Integer lavoratoriInForza) {
+		this.lavoratoriInForza = lavoratoriInForza;
+	}
+
+	public void setProductivity(Double productivity) {
 		this.productivity = productivity;
 	}
 

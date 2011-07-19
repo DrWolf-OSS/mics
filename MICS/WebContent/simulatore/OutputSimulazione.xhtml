@@ -25,25 +25,41 @@
                     <f:facet name="header">
                         <h:outputText value="Incremento da Reputazione" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).incrementoDareputazione}">
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Incremento da Innovazione di Prodotto" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).incrementoDaInnovazione}">
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Productivity" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).productivity}">
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
+            </rich:column>
+            <rich:column>
+                    <f:facet name="header">
+                        <h:outputText value="Quota Volumi Aziendali" />
+                    </f:facet>
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).quotaVolumiAziendali}">
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Volumi di Mercato" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).volumiMercato}">
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
             </rich:column>
         </rich:dataTable>
 
@@ -63,25 +79,25 @@
                     <f:facet name="header">
                         <h:outputText value="Domanda Lavoro" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).domandaLavoro}"  />
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Incremento Occupazionale" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).domandaLavoro}"  />
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Esuberi" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).esuberi}"  />
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Lavoratori in Forza" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).lavoratoriInForza}"  />
             </rich:column>
         </rich:dataTable>       
 
@@ -101,31 +117,41 @@
                     <f:facet name="header">
                         <h:outputText value="Indotto Congiunturale" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).indottoCongiunturale}" >
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Indotto Strutturale" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).indottoStrutturale}" >
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Indotto Territoriale" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).indottoTerritoriale}" >
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Forniture Esterne" />
                     </f:facet>
-                    <h:outputText value=""  />
+                     <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).fornitureEsterne}" >
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
             </rich:column>
             <rich:column>
                     <f:facet name="header">
                         <h:outputText value="Acquisti Totali" />
                     </f:facet>
-                    <h:outputText value=""  />
+                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).acquistiTotali}">
+                    <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputText>
             </rich:column>
         </rich:dataTable>
         <div style="clear:both" />        
