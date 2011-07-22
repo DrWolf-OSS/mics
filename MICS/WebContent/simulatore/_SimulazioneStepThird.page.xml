@@ -4,7 +4,7 @@
       xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd">
 
     <begin-conversation join="true"/>
-     <navigation from-action="#{simulationBean.checkFinalStep()}">
-       <redirect view-id="/simulatore/OutputSimulazione.xhtml"/>
+      <navigation from-action="#{simulationBean.checkStepThird()}">
+       <redirect view-id="/simulatore/SimulazioneStepFourth.xhtml"/>
     </navigation>
 </page>

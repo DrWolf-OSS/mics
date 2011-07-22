@@ -1,15 +1,15 @@
 package it.drwolf.mics.util;
 
-public enum StepFouthTypeBFields {
+public enum StepThirdTypeBFields {
 
-	quantitaProdottiStandard("uantitˆ di prodotti standard vendute"), fatturato(
+	quantitaProdottiStandard("uantitï¿½ di prodotti standard vendute"), fatturato(
 			"Fatturato"), valoreProduzione("Valore della produzione"), quantitaProdotta(
-			"Quantitˆ prodotta"), numeroDipendenti("Numero dipendenti"), fatturatoComplessivoSettore(
+			"Quantitï¿½ prodotta"), numeroDipendenti("Numero dipendenti"), fatturatoComplessivoSettore(
 			"Fatturato complessivo del comparto/settore");
 
 	private String testo;
 
-	private StepFouthTypeBFields(String testo) {
+	private StepThirdTypeBFields(String testo) {
 		this.testo = testo;
 	}
 

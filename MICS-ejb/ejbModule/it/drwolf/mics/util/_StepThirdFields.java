@@ -1,15 +1,14 @@
 package it.drwolf.mics.util;
 
-public enum StepThirdFields {
+public enum _StepThirdFields {
 
 	quotaAmmortamentoBeniMateriali("Quota ammortamento beni materiali"), costiProdGodimentoBeniTerzi(
 			"Costi di prod. per godimento beni di terzi"), quotaAmmortamentoBeniImmateriali(
-			"Quota ammortamento beni immateriali"), avviamento("Avviamento"), quotaAmmortamentoAvviamento(
-			"Quota di ammortamento Avviamento");
+			"Quota ammortamento beni immateriali");
 
 	private String testo;
 
-	private StepThirdFields(String testo) {
+	private _StepThirdFields(String testo) {
 		this.testo = testo;
 	}
 

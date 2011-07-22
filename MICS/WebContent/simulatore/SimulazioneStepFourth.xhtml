@@ -10,36 +10,46 @@
 
 <ui:define name="body">
     <h1>Simulazione - Step 4</h1>
-    <h2>Produttività media del lavoro, Quota volumi aziendali, valore medio unita’ prodotta</h2>
-    <h:form id="step-fourth" styleClass="edit">
+    <h2>Fornitura/Indotto, Stime domanda del mercato di riferimento </h2>
+    <h:form id="step-fifth" styleClass="edit">
         <rich:panel>
-             <rich:dataTable value="#{simulationBean.stepFourthFields}" var="field" >
-                   <rich:column  width="33%">
-                        <f:facet name="header">
-                            <rich:spacer />
-                        </f:facet>
-                        <h:outputText value="#{field.testo}" style="font-weight: bold;"/>
-                        <s:span styleClass="required">*</s:span>
-                   </rich:column>
-                   <rich:columns value="#{simulationBean.getAnniBilancio(1)}" var="anno"
-                    index="year" id="column#{year}" width="40%">
-                     <f:facet name="header">
-                        <h:outputText value="#{anno}" />
-                    </f:facet>
-                    <s:decorate  id="s#{year}" template="/layout/editColumns.xhtml">    
-                     <h:inputText  id="i#{year}" 
-                           required="true"
-                           value="#{simulationBean.getDatiBilancio(anno)[field.nome]}"/>
-                    </s:decorate>
-                </rich:columns>
-             </rich:dataTable>
-
+              <s:decorate id="stimaCostiField" template="/layout/edit.xhtml">
+                <ui:define name="label">Stima dei Costi di produzione per materie prime acquistabili sul territorio</ui:define>
+                  <rich:inputNumberSlider  maxValue="100" showInput="true"
+            enableManualInput="true" showBoundaryValues="true" value="#{simulationBean.percentualeCostiProduzioneTerritorio}" />
+            
+            </s:decorate>   
+         <s:decorate id="stimaIndottoField" template="/layout/edit.xhtml">
+                <ui:define name="label">Stima dell’Indotto congiunturale erogato dal territorio</ui:define>
+                  <rich:inputNumberSlider  maxValue="100" showInput="true"
+            enableManualInput="true" showBoundaryValues="true" value="#{simulationBean.percentualeIndottoCongiunturaleTerritorio}" />
+            
+            </s:decorate>   
+            <s:decorate id="domandaMercato0Field" template="/layout/edit.xhtml">
+                <ui:define name="label"><h:outputText  value="#{'Quota volume aziendale per l\'anno '.concat(simulationBean.getAnnoSimulazione(0))}" /> </ui:define>
+                <h:inputText id="simulaizioneAnno0"
+                              required="true"
+                              value="#{simulationBean.domandaMercato.volumeMercatoAnno0}"/>
+            </s:decorate>   
+           <s:decorate id="domandaMercato1Field" template="/layout/edit.xhtml">
+                <ui:define name="label"><h:outputText  value="#{'Stima volume aziendale per l\'anno '.concat(simulationBean.getAnnoSimulazione(1))}" /> </ui:define>
+                <h:inputText id="simulaizioneAnno1"
+                              required="true"
+                              value="#{simulationBean.domandaMercato.volumeMercatoAnno1}"/>
+            </s:decorate>   
+           <s:decorate id="domandaMercato2Field" template="/layout/edit.xhtml">
+                <ui:define name="label"><h:outputText  value="#{'Stima volume aziendale per l\'anno '.concat(simulationBean.getAnnoSimulazione(2))}" /> </ui:define>
+                <h:inputText id="simulaizioneAnno2"
+                              required="true"
+                              value="#{simulationBean.domandaMercato.volumeMercatoAnno2}"/>
+            </s:decorate>   
+            
             <div style="clear:both">
                 <span class="required">*</span>
                 Campi obbligatori       
             </div>
         </rich:panel>
-        <h:commandButton  id="simulazione" value="Quinto Step" action="#{simulationBean.checkStepFourth()}" />
+        <h:commandButton  id="simulazione" value="Avvia la Simulazione" action="#{simulationBean.checkFinalStep()}" />
     
     </h:form>
 

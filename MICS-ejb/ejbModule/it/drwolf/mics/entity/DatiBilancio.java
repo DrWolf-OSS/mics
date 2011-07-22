@@ -50,12 +50,6 @@ public class DatiBilancio implements Serializable {
 
 	// Innovazioni di prodotto / processo
 
-	private BigDecimal avviamento;
-
-	private BigDecimal quotaAmmortamentoAvviamento;
-
-	// Produttivita’ media del lavoro/rendimento dei dipendenti
-
 	// Soluzione A
 	private BigDecimal valoreProduzione;
 
@@ -139,12 +133,6 @@ public class DatiBilancio implements Serializable {
 	@JoinColumn(name = "anno", nullable = true, insertable = false, updatable = false)
 	public AnnoBilancio getAnnoBilancio() {
 		return this.annoBilancio;
-	}
-
-	// deve essere not null
-	@Column(name = "avviamento", nullable = true)
-	public BigDecimal getAvviamento() {
-		return this.avviamento;
 	}
 
 	// deve essere not null
@@ -246,12 +234,6 @@ public class DatiBilancio implements Serializable {
 	}
 
 	// deve essere not null
-	@Column(name = "quota_ammortamento_avviamento", nullable = true)
-	public BigDecimal getQuotaAmmortamentoAvviamento() {
-		return this.quotaAmmortamentoAvviamento;
-	}
-
-	// deve essere not null
 	@Column(name = "quota_ammortamenti_beni_immateriali", nullable = true)
 	public BigDecimal getQuotaAmmortamentoBeniImmateriali() {
 		return this.quotaAmmortamentoBeniImmateriali;
@@ -307,10 +289,6 @@ public class DatiBilancio implements Serializable {
 
 	public void setAnnoBilancio(AnnoBilancio annoBilancio) {
 		this.annoBilancio = annoBilancio;
-	}
-
-	public void setAvviamento(BigDecimal avviamento) {
-		this.avviamento = avviamento;
 	}
 
 	public void setCostiProdGodimentoBeniTerzi(
@@ -388,11 +366,6 @@ public class DatiBilancio implements Serializable {
 
 	public void setQuantitaVendute(Integer quantitaVendute) {
 		this.quantitaVendute = quantitaVendute;
-	}
-
-	public void setQuotaAmmortamentoAvviamento(
-			BigDecimal quotaAmmortamentoImmImmateriali) {
-		this.quotaAmmortamentoAvviamento = quotaAmmortamentoImmImmateriali;
 	}
 
 	public void setQuotaAmmortamentoBeniImmateriali(

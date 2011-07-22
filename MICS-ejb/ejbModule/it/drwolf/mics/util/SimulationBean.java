@@ -183,17 +183,13 @@ public class SimulationBean {
 		return this.solutionType;
 	}
 
-	public List<?> getStepFourthFields() {
+	public List<?> getStepThirdFields() {
 		if (this.solutionType.equals("A")) {
-			return Arrays.asList(StepFourthTypeAFields.values());
+			return Arrays.asList(StepThirdTypeAFields.values());
 		} else {
-			return Arrays.asList(StepFouthTypeBFields.values());
+			return Arrays.asList(StepThirdTypeBFields.values());
 		}
 
-	}
-
-	public List<StepThirdFields> getStepThirdFields() {
-		return Arrays.asList(StepThirdFields.values());
 	}
 
 	public List<StepTwoFields> getStepTwoFields() {

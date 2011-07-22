@@ -10,8 +10,8 @@
 
 <ui:define name="body">
     <h1>Simulazione - Step 3</h1>
-    <h2>Produttività media del lavoro, Quota volumi aziendali, valore medio unita’ prodotta</h2>
-    <h:form id="step-fourth" styleClass="edit">
+    <h2>Concorrenza, Innovaizone di Prodotto e di Processo</h2>
+    <h:form id="step-third" styleClass="edit">
         <rich:panel>
              <rich:dataTable value="#{simulationBean.stepThirdFields}" var="field" >
                    <rich:column  width="33%">
@@ -21,13 +21,13 @@
                         <h:outputText value="#{field.testo}" style="font-weight: bold;"/>
                         <s:span styleClass="required">*</s:span>
                    </rich:column>
-                   <rich:columns value="#{simulationBean.getAnniBilancio(1)}" var="anno"
+                   <rich:columns value="#{simulationBean.getAnniBilancio(2)}" var="anno"
                     index="year" id="column#{year}" width="40%">
                      <f:facet name="header">
                         <h:outputText value="#{anno}" />
                     </f:facet>
-                    <s:decorate  id="s#{year}" template="/layout/editColumns.xhtml">    
-                     <h:inputText  id="i#{year}" 
+                    <s:decorate id="s#{year}" template="/layout/editColumns.xhtml">    
+                     <h:inputText id="i#{year}" 
                            required="true"
                            value="#{simulationBean.getDatiBilancio(anno)[field.nome]}"/>
                     </s:decorate>
@@ -39,7 +39,7 @@
                 Campi obbligatori       
             </div>
         </rich:panel>
-        <h:commandButton  id="simulazione" value="Quinto Step" action="#{simulationBean.checkStepThird()}" />
+        <h:commandButton id="simulazione" value="Quarto Step" action="#{simulationBean.checkStepThird()}" />
     
     </h:form>
 

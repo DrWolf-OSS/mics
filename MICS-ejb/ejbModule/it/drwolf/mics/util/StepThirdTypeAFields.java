@@ -1,16 +1,16 @@
 package it.drwolf.mics.util;
 
-public enum StepFourthTypeAFields {
+public enum StepThirdTypeAFields {
 
 	valoreProduzione("Valore della produzione"), costiProduzioneServizi(
 			"Costi di produzione per servizi"), costoPersonale(
 			"Costo del personale"), costoMateriePrime(
 			"Costo delle materie prime e di consumo"), numeroDipendenti(
-			"Numero dipendenti"), quantitaVendute("Quantitˆ vendute");
+			"Numero dipendenti"), quantitaVendute("Quantitï¿½ vendute");
 
 	private String testo;
 
-	private StepFourthTypeAFields(String testo) {
+	private StepThirdTypeAFields(String testo) {
 		this.testo = testo;
 	}
 
