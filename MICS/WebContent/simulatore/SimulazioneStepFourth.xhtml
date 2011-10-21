@@ -13,6 +13,13 @@
     <h2>Fornitura/Indotto, Stime domanda del mercato di riferimento </h2>
     <h:form id="step-fifth" styleClass="edit">
         <rich:panel>
+              <s:decorate id="materiePrimeField" template="/layout/edit.xhtml">
+                <ui:define name="label">Costo delle materie prime e di consumo / Acquisti iniziali</ui:define>
+                    <h:inputText id="simulaizioneAnno2"
+                              required="true"
+                              value="#{simulationBean.costoMateriePrime}"/>
+            </s:decorate>   
+
               <s:decorate id="stimaCostiField" template="/layout/edit.xhtml">
                 <ui:define name="label">Stima dei Costi di produzione per materie prime acquistabili sul territorio</ui:define>
                   <rich:inputNumberSlider  maxValue="100" showInput="true"

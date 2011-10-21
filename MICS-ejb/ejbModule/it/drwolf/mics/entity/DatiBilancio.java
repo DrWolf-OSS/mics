@@ -50,32 +50,15 @@ public class DatiBilancio implements Serializable {
 
 	// Innovazioni di prodotto / processo
 
-	// Soluzione A
-	private BigDecimal valoreProduzione;
-
-	private BigDecimal costiProduzioneServizi;
-
-	private BigDecimal costoPersonale;
-
 	private BigDecimal costoMateriePrime;
 
 	private Integer numeroDipendenti;
 
 	// Soluzione B
 
-	private Integer quantitaProdottiStandard;
-
 	private BigDecimal fatturato;
 
 	// valore produzione (dalla soluzione A)
-
-	private Integer quantitaProdotta;
-
-	// addetti immagino sia equiparabile al numero dipendenti (soluzione A)
-
-	// Quota volumi aziendali
-
-	// Soluzione A
 
 	private Integer quantitaVendute;
 
@@ -141,11 +124,6 @@ public class DatiBilancio implements Serializable {
 		return this.costiProdGodimentoBeniTerzi;
 	}
 
-	@Column(name = "costi_produzione_serivzi", nullable = true)
-	public BigDecimal getCostiProduzioneServizi() {
-		return this.costiProduzioneServizi;
-	}
-
 	// deve essere not null
 	@Column(name = "costo_lavoro_medio_comparto", nullable = true)
 	public BigDecimal getCostoLavoroMedioComparto() {
@@ -161,11 +139,6 @@ public class DatiBilancio implements Serializable {
 	@Column(name = "costo_materie_prime", nullable = true)
 	public BigDecimal getCostoMateriePrime() {
 		return this.costoMateriePrime;
-	}
-
-	@Column(name = "costo_personale", nullable = true)
-	public BigDecimal getCostoPersonale() {
-		return this.costoPersonale;
 	}
 
 	// deve essere not null
@@ -218,16 +191,6 @@ public class DatiBilancio implements Serializable {
 		return this.produzioneTotaleMercatoRiferimento;
 	}
 
-	@Column(name = "quantita_prodotta", nullable = true)
-	public Integer getQuantitaProdotta() {
-		return this.quantitaProdotta;
-	}
-
-	@Column(name = "quantita_prodotti_standard", nullable = true)
-	public Integer getQuantitaProdottiStandard() {
-		return this.quantitaProdottiStandard;
-	}
-
 	@Column(name = "quantita_vendute", nullable = true)
 	public Integer getQuantitaVendute() {
 		return this.quantitaVendute;
@@ -269,11 +232,6 @@ public class DatiBilancio implements Serializable {
 		return this.simulazione;
 	}
 
-	@Column(name = "valore_produzione", nullable = true)
-	public BigDecimal getValoreProduzione() {
-		return this.valoreProduzione;
-	}
-
 	@Column(name = "valore_produzione_totale_mercato_riferimento", nullable = true)
 	public BigDecimal getValoreProduzioneTotaleMercatoRiferimento() {
 		return this.valoreProduzioneTotaleMercatoRiferimento;
@@ -296,10 +254,6 @@ public class DatiBilancio implements Serializable {
 		this.costiProdGodimentoBeniTerzi = costiProdGodimentoBeniTerzi;
 	}
 
-	public void setCostiProduzioneServizi(BigDecimal costiProduzioneServizi) {
-		this.costiProduzioneServizi = costiProduzioneServizi;
-	}
-
 	public void setCostoLavoroMedioComparto(BigDecimal costoLavoroMedioComparto) {
 		this.costoLavoroMedioComparto = costoLavoroMedioComparto;
 	}
@@ -310,10 +264,6 @@ public class DatiBilancio implements Serializable {
 
 	public void setCostoMateriePrime(BigDecimal costoMateriePrime) {
 		this.costoMateriePrime = costoMateriePrime;
-	}
-
-	public void setCostoPersonale(BigDecimal costoPersonale) {
-		this.costoPersonale = costoPersonale;
 	}
 
 	public void setDebitiBancheSuFatturato(BigDecimal debitiBamcheSuFatturato) {
@@ -356,14 +306,6 @@ public class DatiBilancio implements Serializable {
 		this.produzioneTotaleMercatoRiferimento = produzioneTotaleMercatoRiferimento;
 	}
 
-	public void setQuantitaProdotta(Integer quantitaProdotta) {
-		this.quantitaProdotta = quantitaProdotta;
-	}
-
-	public void setQuantitaProdottiStandard(Integer quantitaProdottiStandard) {
-		this.quantitaProdottiStandard = quantitaProdottiStandard;
-	}
-
 	public void setQuantitaVendute(Integer quantitaVendute) {
 		this.quantitaVendute = quantitaVendute;
 	}
@@ -393,10 +335,6 @@ public class DatiBilancio implements Serializable {
 
 	public void setSimulazione(Simulazione simulazione) {
 		this.simulazione = simulazione;
-	}
-
-	public void setValoreProduzione(BigDecimal valoreProduzione) {
-		this.valoreProduzione = valoreProduzione;
 	}
 
 	public void setValoreProduzioneTotaleMercatoRiferimento(

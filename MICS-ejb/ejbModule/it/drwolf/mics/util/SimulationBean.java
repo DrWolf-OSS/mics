@@ -5,20 +5,26 @@ import it.drwolf.mics.entity.Azienda;
 import it.drwolf.mics.entity.DatiBilancio;
 import it.drwolf.mics.entity.DatiBilancioId;
 import it.drwolf.mics.entity.DomandaMercato;
+import it.drwolf.mics.entity.Glossario;
 import it.drwolf.mics.entity.OutputSimulazione;
 import it.drwolf.mics.entity.Simulazione;
 import it.drwolf.mics.entity.TrimestreSimulazione;
 import it.drwolf.mics.model.MiICSiThinkModel;
 import it.drwolf.mics.session.home.DatiBilancioHome;
 
+import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.In;
@@ -40,12 +46,17 @@ public class SimulationBean {
 	private String settore;
 	private Integer anno0;
 	private String solutionType;
+	private BigDecimal costoMateriePrime;
 	private Integer percentualeCostiProduzioneTerritorio;
+
 	private Integer percentualeIndottoCongiunturaleTerritorio;
+
 	private TreeMap<Integer, DatiBilancio> datiBilancio = new TreeMap<Integer, DatiBilancio>();
 	private DomandaMercato domandaMercato = new DomandaMercato();
-
 	private ArrayList<OutputSimulazione> risultati = new ArrayList<OutputSimulazione>();
+	private HashMap<String, ArrayList<ArrayList<Integer>>> visualized = new HashMap<String, ArrayList<ArrayList<Integer>>>();
+
+	private HashMap<String, String> labels = new HashMap<String, String>();
 
 	public String checkFinalStep() {
 		// prima dovresi verificare la correttezza dei dati
@@ -136,6 +147,10 @@ public class SimulationBean {
 		return this.azienda;
 	}
 
+	public BigDecimal getCostoMateriePrime() {
+		return this.costoMateriePrime;
+	}
+
 	public DatiBilancio getDatiBilancio(int anno) {
 		if (this.datiBilancio.get(anno) == null) {
 			this.datiBilancio.put(anno, new DatiBilancio());
@@ -146,6 +161,11 @@ public class SimulationBean {
 
 	public DomandaMercato getDomandaMercato() {
 		return this.domandaMercato;
+	}
+
+	public ArrayList<Entry<String, ArrayList<ArrayList<Integer>>>> getEntries() {
+		return new ArrayList<Entry<String, ArrayList<ArrayList<Integer>>>>(
+				this.visualized.entrySet());
 	}
 
 	public Integer getPercentualeCostiProduzioneTerritorio() {
@@ -160,6 +180,48 @@ public class SimulationBean {
 		return this.risultati;
 	}
 
+	public ArrayList<ArrayList<Integer>> getRisultatiByName(String name) {
+		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+		for (int index = 3; index < this.risultati.size(); index++) {
+			OutputSimulazione os = this.risultati.get(index);
+			try {
+				ArrayList<Integer> trimestre = new ArrayList<Integer>();
+				trimestre.add(os.getTrimestreSimulazione().getTrimestre());
+				Object res = os.getClass().getMethod(name, null)
+						.invoke(os, null);
+				if (res instanceof Double) {
+					Double d = (Double) res;
+					trimestre.add(d.intValue());
+				} else if (res instanceof BigDecimal) {
+					BigDecimal bd = (BigDecimal) res;
+					trimestre.add(bd.intValue());
+				} else if (res instanceof Integer) {
+					Integer i = (Integer) res;
+					trimestre.add(i);
+				} else {
+					trimestre.add(0);
+				}
+				result.add(trimestre);
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
 	public OutputSimulazione getRisultatiTrimestre(TrimestreSimulazione ts) {
 		for (OutputSimulazione os : this.risultati) {
 			if (os.getTrimestreSimulazione().equals(ts)) {
@@ -168,8 +230,6 @@ public class SimulationBean {
 		}
 		return null;
 	}
-
-	// Step Two
 
 	public String getSettore() {
 		return this.settore;
@@ -182,6 +242,8 @@ public class SimulationBean {
 	public String getSolutionType() {
 		return this.solutionType;
 	}
+
+	// Step Two
 
 	public List<?> getStepThirdFields() {
 		if (this.solutionType.equals("A")) {
@@ -196,12 +258,58 @@ public class SimulationBean {
 		return Arrays.asList(StepTwoFields.values());
 	}
 
+	public String getUnitaDiMisur(String name) {
+		String unita = "";
+		try {
+			Glossario voce = (Glossario) this.entityManager
+					.createQuery("from Glossario where name= :name")
+					.setParameter("name", name).getSingleResult();
+			unita = voce.getUnitaDiMisura();
+		} catch (NoResultException e) {
+			// TODO: handle exception
+		}
+		return unita;
+	}
+
+	public HashMap<String, ArrayList<ArrayList<Integer>>> getVisualized() {
+		return this.visualized;
+	}
+
+	public String getVocabolo(String name) {
+		String vocabolo = "";
+		try {
+			Glossario voce = (Glossario) this.entityManager
+					.createQuery("from Glossario where name = :name")
+					.setParameter("name", name).getSingleResult();
+			vocabolo = voce.getVocabolo();
+		} catch (NoResultException e) {
+			vocabolo = "Da inserire";
+		}
+		return vocabolo;
+	}
+
+	public String getVocaboloDef(String name) {
+		String definizione = "";
+		try {
+			Glossario voce = (Glossario) this.entityManager
+					.createQuery("from Glossario where name = :name")
+					.setParameter("name", name).getSingleResult();
+			definizione = voce.getDefinizione();
+		} catch (NoResultException e) {
+		}
+		return definizione;
+	}
+
 	public void setAnno0(Integer anno0) {
 		this.anno0 = anno0;
 	}
 
 	public void setAzienda(String azienda) {
 		this.azienda = azienda;
+	}
+
+	public void setCostoMateriePrime(BigDecimal costoMateriePrime) {
+		this.costoMateriePrime = costoMateriePrime;
 	}
 
 	public void setDomandaMercato(DomandaMercato domandaMercato) {
@@ -230,14 +338,35 @@ public class SimulationBean {
 		this.solutionType = solutionType;
 	}
 
+	public void setVisualized(
+			HashMap<String, ArrayList<ArrayList<Integer>>> visualized) {
+		this.visualized = visualized;
+	}
+
 	public void startSimulation() {
 		System.out.println("Avvio la simulazione");
 		System.out.println(this.datiBilancioHome.getInstance().getId());
 
 		MiICSiThinkModel micsModel = new MiICSiThinkModel(this.entityManager,
-				new Double(this.getPercentualeIndottoCongiunturaleTerritorio()));
+				this, new Double(
+						this.getPercentualeIndottoCongiunturaleTerritorio()));
 		this.risultati = micsModel.execute(this.datiBilancioHome.getInstance(),
 				this.domandaMercato);
+		this.labels.put("Incremento da Innovazione",
+				"getIncrementoDaInnovazione");
+		this.labels.put("Incremento da Reputazione",
+				"getIncrementoDareputazione");
+		this.labels.put("Producivity", "getProductivity");
+		this.labels.put("Quota volumi aziendali", "getQuotaVolumiAziendali");
+		this.labels.put("Volumi di Mercato", "getVolumiMercato");
+		this.labels.put("Domanda Lavoro", "getDomandaLavoro");
+		this.labels.put("Esuberi", "getEsuberi");
+		this.labels.put("Lavoratori in Forza", "getLavoratoriInForza");
+		for (String label : this.labels.keySet()) {
+			this.visualized.put(label,
+					this.getRisultatiByName(this.labels.get(label)));
+
+		}
 
 	}
 }

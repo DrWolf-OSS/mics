@@ -4,6 +4,7 @@ import it.drwolf.mics.entity.DatiBilancio;
 import it.drwolf.mics.entity.DomandaMercato;
 import it.drwolf.mics.entity.OutputSimulazione;
 import it.drwolf.mics.entity.TrimestreSimulazione;
+import it.drwolf.mics.util.SimulationBean;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -20,6 +21,8 @@ import org.jboss.seam.annotations.Scope;
 @Scope(ScopeType.CONVERSATION)
 public class MiICSiThinkModel {
 
+	SimulationBean simulationBean;
+
 	EntityManager entityManager;
 
 	double[] delayDomandaLavoro = { 0, 0, 0 };
@@ -29,8 +32,10 @@ public class MiICSiThinkModel {
 	private Double percentualeCostiProduzioneTerritorio;
 
 	public MiICSiThinkModel(EntityManager entityManager,
+			SimulationBean simulationBean,
 			Double percentualeCostiProduzioneTerritorio) {
 		this.entityManager = entityManager;
+		this.simulationBean = simulationBean;
 		this.percentualeCostiProduzioneTerritorio = percentualeCostiProduzioneTerritorio;
 	}
 
@@ -64,9 +69,13 @@ public class MiICSiThinkModel {
 
 		BigDecimal effettiFluttuazioneMercato = new BigDecimal(0);
 
-		BigDecimal quotaVolumeAziendaleIniziale = new BigDecimal(
-				db.getQuantitaVendute());
-
+		BigDecimal quotaVolumeAziendaleIniziale = null;
+		if (this.simulationBean.getSolutionType().equals("A")) {
+			quotaVolumeAziendaleIniziale = new BigDecimal(
+					db.getQuantitaVendute());
+		} else if (this.simulationBean.getSolutionType().equals("B")) {
+			quotaVolumeAziendaleIniziale = db.getFatturato();
+		}
 		BigDecimal definisceSegnoEffettiIdp = new BigDecimal(1);
 
 		BigDecimal effettiIdp = new BigDecimal(1);
@@ -117,6 +126,9 @@ public class MiICSiThinkModel {
 
 		Double volumiDiMercato = new Double(0);
 
+		// Nel caso A:
+
+		// Nel caso B:
 		Double productivityIniziale = new Double(11);
 
 		Double productivity = new Double(0);
@@ -260,18 +272,22 @@ public class MiICSiThinkModel {
 
 			if ((quotaVolumiAziendali - quotaVolumeAziendaleIniziale
 					.doubleValue()) > 0) {
-				acquistiTotali = db.getCostoMateriePrime().multiply(
-						new BigDecimal(1).add((new BigDecimal(
-								quotaVolumiAziendali)
-								.subtract(quotaVolumeAziendaleIniziale))
-								.divide(quotaVolumeAziendaleIniziale)));
+				acquistiTotali = this.simulationBean
+						.getCostoMateriePrime()
+						.multiply(
+								new BigDecimal(1).add((new BigDecimal(
+										quotaVolumiAziendali)
+										.subtract(quotaVolumeAziendaleIniziale))
+										.divide(quotaVolumeAziendaleIniziale)));
 			} else {
-				acquistiTotali = db.getCostoMateriePrime().multiply(
-						new BigDecimal(1).subtract(((new BigDecimal(
-								quotaVolumiAziendali)
-								.subtract(quotaVolumeAziendaleIniziale))
-								.divide(quotaVolumeAziendaleIniziale, 5,
-										RoundingMode.FLOOR)).abs()));
+				acquistiTotali = this.simulationBean
+						.getCostoMateriePrime()
+						.multiply(
+								new BigDecimal(1).subtract(((new BigDecimal(
+										quotaVolumiAziendali)
+										.subtract(quotaVolumeAziendaleIniziale))
+										.divide(quotaVolumeAziendaleIniziale,
+												5, RoundingMode.FLOOR)).abs()));
 			}
 
 			if (productivityIniziale == 0) {
@@ -282,7 +298,7 @@ public class MiICSiThinkModel {
 			if ((lnaqva - lavoratoriInForza) > 0) {
 				indottoCongiunturale = new BigDecimal(productivity
 						* (lnaqva - lavoratoriInForza)
-						* db.getValoreProduzione().doubleValue());
+						* db.getFatturato().doubleValue());
 			}
 
 			indottoStrutturale = acquistiTotali.subtract(indottoCongiunturale);

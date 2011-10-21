@@ -2,11 +2,9 @@ package it.drwolf.mics.util;
 
 public enum StepThirdTypeAFields {
 
-	valoreProduzione("Valore della produzione"), costiProduzioneServizi(
-			"Costi di produzione per servizi"), costoPersonale(
-			"Costo del personale"), costoMateriePrime(
+	fatturato("Fatturato"), costoMateriePrime(
 			"Costo delle materie prime e di consumo"), numeroDipendenti(
-			"Numero dipendenti"), quantitaVendute("Quantit� vendute");
+			"Numero dipendenti"), quantitaVendute("Quantità vendute");
 
 	private String testo;
 

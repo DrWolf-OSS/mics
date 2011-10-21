@@ -2,6 +2,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
     xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:c="http://java.sun.com/jstl/core"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
@@ -10,152 +11,147 @@
 
 <ui:define name="body">
     <h1>Risultati Simulazione</h1>
-        <rich:panel >
-        <rich:dataTable value="#{trimestreSimulazioneList.resultList}" var="trimestre">
-            <f:facet name="header">
-                <h:outputText value="Indicatori Produzione Aziendale" />
-            </f:facet>        
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Periodo" />
-                    </f:facet>
-                    <h:outputText value="#{trimestre.nomeTrimestre} Trimestre"  />
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Incremento da Reputazione" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).incrementoDareputazione}">
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Incremento da Innovazione di Prodotto" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).incrementoDaInnovazione}">
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Productivity" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).productivity}">
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Quota Volumi Aziendali" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).quotaVolumiAziendali}">
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Volumi di Mercato" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).volumiMercato}">
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-        </rich:dataTable>
+    
+     <table>
+      <tr>
+          <td width="99%">
+               <div id="placeholder" style="height:400px;width:100%;"></div>
+          </td>
+          <td width="128">
+              <div id="legend" style="width: 128px;height:400px;overflow:auto;"></div>
+          </td>
+      </tr>
+   </table>
 
-        <rich:spacer />
-        
-        <rich:dataTable  value="#{trimestreSimulazioneList.resultList}" var="trimestre">
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Periodo" />
-                    </f:facet>
-                    <h:outputText value="#{trimestre.nomeTrimestre} Trimestre"  />
-            </rich:column>
-            <f:facet name="header">
-                <h:outputText value="Indicatori Occupazionali" />
-            </f:facet>        
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Domanda Lavoro" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).domandaLavoro}"  />
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Incremento Occupazionale" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).domandaLavoro}"  />
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Esuberi" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).esuberi}"  />
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Lavoratori in Forza" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).lavoratoriInForza}"  />
-            </rich:column>
-        </rich:dataTable>       
+   <p id="choices"></p>
+   
+   
+   <script type="text/javascript">
 
-        <rich:spacer />
+   var datasets = {
+           <c:forEach var="i" begin="0" end="#{simulationBean.entries.size()-1}" step="1">
+           <c:set var="entry" value="#{simulationBean.entries.get(i)}" />
+              <s:fragment>
+                 "#{entry.key}":{label:"#{entry.key}",
+                     required:true,
+                     data:#{entry.value},
+                     yaxis:#{i+1}},
+               </s:fragment>
+          
+           </c:forEach>
+           
+           
+           };
+   
+   
+   </script>
 
-        <rich:dataTable value="#{trimestreSimulazioneList.resultList}" var="trimestre">
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Periodo" />
-                    </f:facet>
-                    <h:outputText value="#{trimestre.nomeTrimestre} Trimestre"  />
-            </rich:column>
-            <f:facet name="header">
-                <h:outputText value="Indotto" />
-            </f:facet>        
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Indotto Congiunturale" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).indottoCongiunturale}" >
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Indotto Strutturale" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).indottoStrutturale}" >
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Indotto Territoriale" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).indottoTerritoriale}" >
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Forniture Esterne" />
-                    </f:facet>
-                     <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).fornitureEsterne}" >
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-            <rich:column>
-                    <f:facet name="header">
-                        <h:outputText value="Acquisti Totali" />
-                    </f:facet>
-                    <h:outputText value="#{simulationBean.getRisultatiTrimestre(trimestre).acquistiTotali}">
-                    <f:convertNumber maxFractionDigits="2"/>
-                    </h:outputText>
-            </rich:column>
-        </rich:dataTable>
-        <div style="clear:both" />        
-        </rich:panel>
+       <script type="text/javascript">
+//<![CDATA[
+
+function plotAccordingToChoices() {
+   var data = [];
+
+   jQuery(".choice").each(function () {
+       jQuerythis = jQuery(this);
+       var key = jQuerythis.attr("name");
+       var checked = jQuerythis.attr("checked")
+       if (key && datasets[key]){
+           if (checked){
+               data.push(datasets[key]);
+           } else {
+               data.push({label:datasets[key]['label'],data:[],yaxis:datasets[key]['yaxis'],color:datasets[key]['color']});
+           }
+       }
+   });
+
+   if (jQuery(".choice").length==0){
+       for (var key in datasets){
+           if (datasets[key].required){
+               data.push(datasets[key]);
+           } else {
+               data.push({label:datasets[key]['label'],data:[],yaxis:datasets[key]['yaxis'],color:datasets[key]['color']});
+           }
+           }
+       }
+
+   if (data.length > 0)
+       jQuery.plot(jQuery("#placeholder"), data, {
+           grid:{hoverable:true},    
+           series: {
+               lines: { show: true },
+               points: { show: true }},
+           yaxis:{ show:false },
+           valueLabels: { show: true },
+           legend:{
+                   container:'#legend',
+                   labelFormatter: function(label, series) {
+                       return '<input onclick="plotAccordingToChoices()" class="choice" '+ (series.data.length!=0?'checked="checked"':'') +' type="checkbox" name="' + label + '"  id="id' + escape(label) + '"> ' + label;
+                 }}
+           });
+   
+};
+
+
+jQuery(function () {
+   
+   var monthNames = ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
+
+       // hard-code color indices to prevent them from shifting as
+       // series are turned on/off
+       var i = 0;
+       jQuery.each(datasets, function(key, val) {
+           val.color = i % 20;
+           ++i;
+       });
+
+       plotAccordingToChoices();
+
+       //tooltip code
+        function showTooltip(x, y, contents) {
+       jQuery('<div id="tooltip">' + contents + '</div>').css( {
+           position: 'absolute',
+           display: 'none',
+           top: y + 5,
+           left: x + 5,
+           border: '1px solid #fdd',
+           padding: '2px',
+           'background-color': '#fee',
+           opacity: 0.80
+       }).appendTo("body").fadeIn(200);
+   }
+       var previousPoint = null;
+       jQuery("#placeholder").bind("plothover", function (event, pos, item) {
+           if (pos.x && pos.y){
+               jQuery("#x").text(pos.x.toFixed(2));
+               jQuery("#y").text(pos.y.toFixed(2));
+           }
+           
+               if (item) {
+                   if (previousPoint != item.dataIndex) {
+                       previousPoint = item.dataIndex;
+                       
+                       jQuery("#tooltip").remove();
+                       var x = item.datapoint[0],
+                           y = item.datapoint[1].toFixed(2);
+                       
+                       showTooltip(item.pageX, item.pageY,
+                                    y );
+                   }
+               }
+               else {
+                   jQuery("#tooltip").remove();
+                   previousPoint = null;            
+               }
+           
+       });
+
+});
+
+//]]>
+</script>
+    
+    
 
 </ui:define>
 </ui:composition>
