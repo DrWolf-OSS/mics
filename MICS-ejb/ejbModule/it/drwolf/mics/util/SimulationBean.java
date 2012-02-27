@@ -51,12 +51,26 @@ public class SimulationBean {
 
 	private Integer percentualeIndottoCongiunturaleTerritorio;
 
+	private boolean datiOk = true;
+
+	private Double innovazioneDiProdotto = new Double(0.1);
+
 	private TreeMap<Integer, DatiBilancio> datiBilancio = new TreeMap<Integer, DatiBilancio>();
+
 	private DomandaMercato domandaMercato = new DomandaMercato();
+
 	private ArrayList<OutputSimulazione> risultati = new ArrayList<OutputSimulazione>();
+
 	private HashMap<String, ArrayList<ArrayList<Integer>>> visualized = new HashMap<String, ArrayList<ArrayList<Integer>>>();
 
 	private HashMap<String, String> labels = new HashMap<String, String>();
+
+	public boolean checkCalcoloModello() {
+		if (this.isDatiOk()) {
+			return true;
+		}
+		return false;
+	}
 
 	public String checkFinalStep() {
 		// prima dovresi verificare la correttezza dei dati
@@ -168,12 +182,22 @@ public class SimulationBean {
 				this.visualized.entrySet());
 	}
 
+	public Double getInnovazioneDiProdotto() {
+		return this.innovazioneDiProdotto;
+	}
+
 	public Integer getPercentualeCostiProduzioneTerritorio() {
 		return this.percentualeCostiProduzioneTerritorio;
 	}
 
 	public Integer getPercentualeIndottoCongiunturaleTerritorio() {
 		return this.percentualeIndottoCongiunturaleTerritorio;
+	}
+
+	public boolean getRequiredForFiled(String field) {
+		StepTwoFields v = StepTwoFields.valueOf(field);
+		return v.getRequired();
+
 	}
 
 	public ArrayList<OutputSimulazione> getRisultati() {
@@ -243,8 +267,6 @@ public class SimulationBean {
 		return this.solutionType;
 	}
 
-	// Step Two
-
 	public List<?> getStepThirdFields() {
 		if (this.solutionType.equals("A")) {
 			return Arrays.asList(StepThirdTypeAFields.values());
@@ -270,6 +292,8 @@ public class SimulationBean {
 		}
 		return unita;
 	}
+
+	// Step Two
 
 	public HashMap<String, ArrayList<ArrayList<Integer>>> getVisualized() {
 		return this.visualized;
@@ -300,6 +324,10 @@ public class SimulationBean {
 		return definizione;
 	}
 
+	public boolean isDatiOk() {
+		return this.datiOk;
+	}
+
 	public void setAnno0(Integer anno0) {
 		this.anno0 = anno0;
 	}
@@ -312,8 +340,16 @@ public class SimulationBean {
 		this.costoMateriePrime = costoMateriePrime;
 	}
 
+	public void setDatiOk(boolean datiOk) {
+		this.datiOk = datiOk;
+	}
+
 	public void setDomandaMercato(DomandaMercato domandaMercato) {
 		this.domandaMercato = domandaMercato;
+	}
+
+	public void setInnovazioneDiProdotto(Double innovazioneDiProdotto) {
+		this.innovazioneDiProdotto = innovazioneDiProdotto;
 	}
 
 	public void setPercentualeCostiProduzioneTerritorio(

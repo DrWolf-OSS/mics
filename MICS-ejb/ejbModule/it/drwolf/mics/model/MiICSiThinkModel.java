@@ -112,7 +112,8 @@ public class MiICSiThinkModel {
 
 		Double reputazione = new Double(0.2);
 
-		Double innovazioneDiProdotto = new Double(0.1);
+		Double innovazioneDiProdotto = this.simulationBean
+				.getInnovazioneDiProdotto();
 
 		Double incrementoDaInnovazioneProdoto = new Double(0);
 

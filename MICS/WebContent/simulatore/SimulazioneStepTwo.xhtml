@@ -20,7 +20,7 @@
 	                        <rich:spacer />
 	                    </f:facet>
 	                    <h:outputText value="#{field.testo}" style="font-weight: bold;"/>
-	                     <s:span styleClass="required">*</s:span>
+	                     <s:span styleClass="required" rendered="#{simulationBean.getRequiredForFiled(field.nome)}">*</s:span>
 	                     <rich:toolTip><strong>#{simulationBean.getVocabolo(field.nome)}</strong><br />#{simulationBean.getVocaboloDef(field.nome)}</rich:toolTip>
                    </rich:column>
                    <rich:columns value="#{simulationBean.getAnniBilancio(2)}" var="anno"
@@ -31,7 +31,7 @@
                     <s:decorate id="s#{year}" template="/layout/editColumns.xhtml">
                        
                      <h:inputText id="i#{year}" 
-                           required="true"
+                           required="#{simulationBean.getRequiredForFiled(field.nome)}"
                            value="#{simulationBean.getDatiBilancio(anno)[field.nome]}">
                             <a:support event="onblur" reRender="annoField" bypassUpdates="true" ajaxSingle="true"/>
                      </h:inputText> 

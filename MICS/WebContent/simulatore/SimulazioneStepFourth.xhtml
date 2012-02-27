@@ -33,19 +33,19 @@
             
             </s:decorate>   
             <s:decorate id="domandaMercato0Field" template="/layout/edit.xhtml">
-                <ui:define name="label"><h:outputText  value="#{'Quota volume aziendale per l\'anno '.concat(simulationBean.getAnnoSimulazione(0))}" /> </ui:define>
+                <ui:define name="label"><h:outputText  value="#{'Valore globale del mercatao per l\'anno '.concat(simulationBean.getAnnoSimulazione(0))}" /> </ui:define>
                 <h:inputText id="simulaizioneAnno0"
                               required="true"
                               value="#{simulationBean.domandaMercato.volumeMercatoAnno0}"/>
             </s:decorate>   
            <s:decorate id="domandaMercato1Field" template="/layout/edit.xhtml">
-                <ui:define name="label"><h:outputText  value="#{'Stima volume aziendale per l\'anno '.concat(simulationBean.getAnnoSimulazione(1))}" /> </ui:define>
+                <ui:define name="label"><h:outputText  value="#{'Stima valore globale del mercatao per l\'anno '.concat(simulationBean.getAnnoSimulazione(1))}" /> </ui:define>
                 <h:inputText id="simulaizioneAnno1"
                               required="true"
                               value="#{simulationBean.domandaMercato.volumeMercatoAnno1}"/>
             </s:decorate>   
            <s:decorate id="domandaMercato2Field" template="/layout/edit.xhtml">
-                <ui:define name="label"><h:outputText  value="#{'Stima volume aziendale per l\'anno '.concat(simulationBean.getAnnoSimulazione(2))}" /> </ui:define>
+                <ui:define name="label"><h:outputText  value="#{'Stima valore globale del mercatao per l\'anno '.concat(simulationBean.getAnnoSimulazione(2))}" /> </ui:define>
                 <h:inputText id="simulaizioneAnno2"
                               required="true"
                               value="#{simulationBean.domandaMercato.volumeMercatoAnno2}"/>

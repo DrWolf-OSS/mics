@@ -5,5 +5,5 @@
 
     <begin-conversation join="true"/>
     
-    <action execute="#{simulationBean.startSimulation()}"/>
+    <action if="#{simulationBean.checkCalcoloModello()}" execute="#{simulationBean.startSimulation()}"/>
 </page>

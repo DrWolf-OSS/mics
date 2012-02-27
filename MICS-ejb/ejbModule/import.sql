@@ -4,6 +4,7 @@ INSERT INTO `mics`.`anno_bilancio` (`anno`) VALUES (2007);
 INSERT INTO `mics`.`anno_bilancio` (`anno`) VALUES (2008);
 INSERT INTO `mics`.`anno_bilancio` (`anno`) VALUES (2009);
 INSERT INTO `mics`.`anno_bilancio` (`anno`) VALUES (2010);
+INSERT INTO `mics`.`anno_bilancio` (`anno`) VALUES (2011);
 -- Inserisce i trimestri su cui si effettua la simulaizone
 INSERT INTO `mics`.`trimestre_simulazione` (`trimestre`, `nome_trimestre`) VALUES (1, 'Primo');
 INSERT INTO `mics`.`trimestre_simulazione` (`trimestre`, `nome_trimestre`) VALUES (2, 'Secondo');

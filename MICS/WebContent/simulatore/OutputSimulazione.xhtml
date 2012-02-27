@@ -150,7 +150,33 @@ jQuery(function () {
 
 //]]>
 </script>
+<h:form id="ricalcola" styleClass="edit">
+ <rich:panel>
+    <f:facet name="header">Ricalcola</f:facet>
+    <s:decorate id="domandaMercato1Field" template="/layout/edit.xhtml">
+                <ui:define name="label"><h:outputText  value="#{'Stima volume aziendale per l\'anno '.concat(simulationBean.getAnnoSimulazione(1))}" /> </ui:define>
+                <h:inputText id="simulaizioneAnno1"
+                              required="true"
+                              value="#{simulationBean.domandaMercato.volumeMercatoAnno1}"/>
+            </s:decorate>   
+           <s:decorate id="domandaMercato2Field" template="/layout/edit.xhtml">
+                <ui:define name="label"><h:outputText  value="#{'Stima volume aziendale per l\'anno '.concat(simulationBean.getAnnoSimulazione(2))}" /> </ui:define>
+                <h:inputText id="simulaizioneAnno2"
+                              required="true"
+                              value="#{simulationBean.domandaMercato.volumeMercatoAnno2}"/>
+            </s:decorate>   
+            <!-- <s:decorate id="innovazioneProdottoField" template="/layout/edit.xhtml">
+                <ui:define name="label">Innovazione di Prodotto</ui:define>
+                  <rich:inputNumberSlider  maxValue="10" showInput="true"
+            enableManualInput="true" showBoundaryValues="true" value="#{simulationBean.innovazioneDiProdotto}" /> 
+            
+            </s:decorate>-->
+           <div style="clear:both">
+            </div>
+ </rich:panel>   
+        <h:commandButton  id="simulazione" value="Ricalcola" action="#{simulationBean.checkCalcoloModello()}" />
     
+    </h:form>
     
 
 </ui:define>
