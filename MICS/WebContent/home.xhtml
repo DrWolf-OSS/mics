@@ -12,17 +12,40 @@
 
         <h1>Benvenuti nel progetto MICS!</h1>
         <h2>Mappa dell’Innovazione e della Crisi nei Sistemi di impresa toscani</h2>
-        <rich:panel>
+        <rich:tabPanel>
+            <rich:tab label="Simulazione">
             <h:panelGrid columns="2">
                 <h:graphicImage value="/img/seamlogo.png" alt="Seam logo"/>
                 <s:div styleClass="info">
+                
+                <div>Questa demo presenta il risultato dello studio di fattibilità portato avanti da IRES Toscana, Dr Wolf S.r.l. e Università di Siena -Dipartimento di scienze storiche, giuridiche, politiche  e sociali,
+                per disporre di  <strong>uno strumento per verificare ed anticipare le strategie delle imprese</strong> (ma sopratutto di sistemi di imprese, territorialmente e settorialmente definiti),<strong>specie quelle occupazionali, alla luce di specifiche aspettative circa la dimensione del mercato ed i processi di innovazione e cambiamento in atto.</strong>
+                Il modello prevede, tramite l'inserimento di input oggettivi (principalmente dati di bilancio e di mercato) e di ipotesi sul posizionamento strategico delle imprese e sull'evoluzione del mercato, di ottenere come output dati previsionali relativi ai due anni successivi,
+                principalmente di natura occupazionale.
+                </div>
 		            <s:button id="simulazione" value="Avvia Simulazione"
 		                       view="/simulatore/SimulazioneStepOne.xhtml">
 		            </s:button>
                     
                 </s:div>
             </h:panelGrid>
-        </rich:panel>
+            </rich:tab>
+            <rich:tab label="I Distretti">
+            <h1>La rappresentazione dei distretti</h1>
+            <div style="font-size: 16px;">
+            
+            Le mappe rappresentano la distribuzione delle aziende presenti nei distretti del camper e meccano-cartario in Toscana. Sono inclusi nelle mappe i principali fornitori e subfornitori localizzati in Toscana. 
+Le aziende della Camper Valley sono localizzate prevalentemente fra le provincie di Siena e Firenze dove viene prodotto  l’80%  della camperistica italiana. La Camper Valley è stata istituzionalizzata nel 2007 divenendo distretto industriale a tutti gli effetti, ma ha una storia ventennale di produzione nell’area della Val d’Elsa. I dati sono stati raccolti dalla Camera di Commercio secondo le classificazioni Ateco e; altre informazioni provengono da siti aziendali e dalla bibliografia specifica.<br /><br />
+Le aziende del distretto meccano-cartario  sono localizzate principalmente nella provincia di Lucca. In questa zona, che ha una tradizione storica di produzione della carta, risalente al XVI secolo, si concentra l’80% della produzione italiana di carta tissue e il 40% di quella di cartone ondulato. I dati sono stati raccolti dalla Camera di Commercio secondo le classificazioni Ateco, dalla banca dati AIDA; altre informazioni sono state raccolte dai siti <a href="www.osservatoriodistretti.org">www.osservatoriodistretti.org</a> e <a href="www.distrettocartario.it">www.distrettocartario.it</a>; altre ancora provengono da siti aziendali e bibliografia specifica.<br />
+<p>Link alle mappe
+<ul>
+    <li><a href="http://maps.google.it/maps/ms?msid=214774246594221290629.0004815c16926f92855b9">Camper Valley</a></li>
 
+    <li><a href="http://maps.google.it/maps/ms?msid=214774246594221290629.000492537e04556acc526">Distretto meccano-cartario</a></li>
+</ul>
+</p>
+</div>
+            </rich:tab>
+        </rich:tabPanel>
     </ui:define>
 </ui:composition>
