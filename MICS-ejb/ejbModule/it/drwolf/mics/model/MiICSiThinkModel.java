@@ -279,7 +279,8 @@ public class MiICSiThinkModel {
 								new BigDecimal(1).add((new BigDecimal(
 										quotaVolumiAziendali)
 										.subtract(quotaVolumeAziendaleIniziale))
-										.divide(quotaVolumeAziendaleIniziale)));
+										.divide(quotaVolumeAziendaleIniziale,
+												5, RoundingMode.FLOOR)));
 			} else {
 				acquistiTotali = this.simulationBean
 						.getCostoMateriePrime()

@@ -1,3 +1,2 @@
-#Fri Mar 25 16:12:52 CET 2011
 eclipse.preferences.version=1
-org.jboss.ide.eclipse.as.core.singledeployable.deployableList=resources/FondoDocumentaleCalenzano-ds.xml\nresources/MICS-ds.xml\nresources/MICS-ds.xml\nresources/IdentityManagementFI-ds.xml\n
+org.jboss.ide.eclipse.as.core.singledeployable.deployableList=resources/mysql-connector-java-5.1.18-bin.jar\nresources/net.mecoil.xman2-ds.xml\nresources/MICS-ds.xml\nresources/postgresql-9.1-901.jdbc4.jar\nresources/mysql-connector-java-5.1.13-bin.jar\nresources/IdentityManagementFI-deployable-ds.xml\nresources/sqljdbc4.jar\nresources/registroinformatico-ds.xml\nresources/IdentityManagementFI-ds.xml\n
