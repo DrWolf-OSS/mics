@@ -71,11 +71,13 @@ public class SimulationBean {
 
 	private HashMap<String, String> labels = new HashMap<String, String>();
 
-	private String alertMessage = "";
+	private List<String> alertMessages = new ArrayList<String>();
 
 	public boolean checkAlert() {
 		boolean result = false;
-		String alertMessage = "Attenzione! Dall'analisi dei dati di bilanio inseriti sono emersi i seguenti problemi:\n";
+		this.setAlertMessages(new ArrayList<String>());
+		this.getAlertMessages()
+				.add("Attenzione! Dall'analisi dei dati di bilanio inseriti sono emersi i seguenti problemi:");
 		if (this.datiBilancio.get(this.anno0).getRoe() != null
 				&& this.datiBilancio.get(this.anno0)
 						.getRendimentoInvestimentiSicuri() != null) {
@@ -86,7 +88,8 @@ public class SimulationBean {
 							this.getDatiBilancio(this.anno0)
 									.getRendimentoInvestimentiSicuri()) <= 0) {
 				result = true;
-				alertMessage += "Il valore del ROE non dobvrebbe essere uguale o inferiore al valore del rendimento in investimenti sicuri\n";
+				this.getAlertMessages()
+						.add("Il valore del ROE non dobvrebbe essere uguale o inferiore al valore del rendimento in investimenti sicuri");
 
 			}
 		}
@@ -94,24 +97,26 @@ public class SimulationBean {
 			if (this.datiBilancio.get(this.anno0).getEbitda()
 					.compareTo(new BigDecimal(0)) < 0) {
 				result = true;
-				alertMessage += "Il valore del EBITDA non dobvrebbe essere negativo\n";
+				this.getAlertMessages().add(
+						"Il valore del EBITDA non dobvrebbe essere negativo");
 			}
 		}
 		if (this.datiBilancio.get(this.anno0).getDebitiBancheSuFatturato() != null) {
 			if (this.datiBilancio.get(this.anno0).getDebitiBancheSuFatturato()
 					.compareTo(new BigDecimal(50)) > 0) {
 				result = true;
-				alertMessage += "Il valore dei  Debiti v/banche su fatturato non dobvrebbe essere superiore al 50%\n";
+				this.getAlertMessages()
+						.add("Il valore dei  Debiti v/banche su fatturato non dobvrebbe essere superiore al 50%");
 			}
 		}
 		if (this.datiBilancio.get(this.anno0).getRoi() != null) {
 			if (this.datiBilancio.get(this.anno0).getRoi()
 					.compareTo(new BigDecimal(0)) < 0) {
 				result = true;
-				alertMessage += "Il valore del ROI non dobvrebbe essere negativo\n";
+				this.getAlertMessages().add(
+						"Il valore del ROI non dobvrebbe essere negativo");
 			}
 		}
-		this.setAlertMessage(alertMessage);
 		return result;
 	}
 
@@ -180,8 +185,8 @@ public class SimulationBean {
 		return "OK";
 	}
 
-	public String getAlertMessage() {
-		return this.alertMessage;
+	public List<String> getAlertMessages() {
+		return this.alertMessages;
 	}
 
 	public List<Integer> getAnni(int indice) {
@@ -392,11 +397,11 @@ public class SimulationBean {
 		return this.datiOk;
 	}
 
-	// Step Two
-
-	public void setAlertMessage(String alertMessage) {
-		this.alertMessage = alertMessage;
+	public void setAlertMessages(List<String> alertMessages) {
+		this.alertMessages = alertMessages;
 	}
+
+	// Step Two
 
 	public void setAnno0(Integer anno0) {
 		this.anno0 = anno0;

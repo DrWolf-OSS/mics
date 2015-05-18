@@ -15,11 +15,14 @@
          <f:facet name="header">
             Verifica dati Bilancio 
         </f:facet>
-        <h:outputText value="#{simulationBean.alertMessage}" />
+        <c:forEach items="#{simulationBean.alertMessages}" var="message">
+	        <h:outputText value="#{message}" /><br />
+        </c:forEach>
     </rich:panel>
 
     <h1>Risultati Simulazione</h1>
-    
+ <rich:tabPanel>
+            <rich:tab label="Grafico">    
      <table>
       <tr>
           <td width="99%">
@@ -30,8 +33,64 @@
           </td>
       </tr>
    </table>
-
    <p id="choices"></p>
+
+
+	</rich:tab>
+            <rich:tab label="Tabella"> 
+            	<rich:dataTable id="tabella" value="#{simulationBean.risultati}" var="output" >
+            		 <rich:column>
+            		 	<f:facet name="header"><h:outputText value="Semestre" /> </f:facet>
+            		 		<h:outputText value="#{output.trimestreSimulazione.nomeTrimestre}" />
+            		 </rich:column>
+            		 <rich:column>
+            		 	<f:facet name="header"><h:outputText value="Domanda Lavoro" /> </f:facet>
+            		 		<h:outputText value="#{output.domandaLavoro}" />
+            		 </rich:column>
+            		 <rich:column>
+            		 	<f:facet name="header"><h:outputText value="Productivity" /> </f:facet>
+            		 		<h:outputText value="#{output.productivity}" >
+            		 		<f:convertNumber maxFractionDigits="2" minFractionDigits="2"  />
+            		 		</h:outputText>
+            		 </rich:column>
+            		 <rich:column>
+            		 	<f:facet name="header"><h:outputText value="Lavoratori in Forza" /> </f:facet>
+            		 		<h:outputText value="#{output.lavoratoriInForza}" />
+            		 </rich:column>
+            		 <rich:column>
+            		 	<f:facet name="header"><h:outputText value="Incremento da Innovazione" /> </f:facet>
+            		 		<h:outputText value="#{output.incrementoDaInnovazione}" >
+            		 	          <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="true" />
+            		 		</h:outputText>
+            		 </rich:column>
+            		 <rich:column>
+            		 	<f:facet name="header"><h:outputText value="Quota Volumi Aziendali" /> </f:facet>
+            		 		<h:outputText value="#{output.quotaVolumiAziendali}" >
+	            		 	<f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="true" />
+            		 		</h:outputText>
+            		 </rich:column>
+            		 <rich:column>
+            		 <f:facet name="header"><h:outputText value="Esuberi" /> </f:facet>
+            		 	<h:outputText value="#{output.esuberi}" />
+            		 </rich:column>
+            		 <rich:column>
+            		 <f:facet name="header"><h:outputText value="Incremento da Reputazione" /> </f:facet>
+            		 	<h:outputText value="#{output.incrementoDareputazione}" >
+            		 	       <f:convertNumber maxFractionDigits="2" minFractionDigits="2" groupingUsed="true" />
+            		 	</h:outputText>
+            		 </rich:column>
+            		 <rich:column>
+            		 <f:facet name="header"><h:outputText value="Volumi di Mercato" /> </f:facet>
+            		 	<h:outputText value="#{output.volumiMercato}" >
+            		 	     <f:convertNumber maxFractionDigits="2" minFractionDigits="2"  />
+            		 	</h:outputText>
+            		 </rich:column>
+            	
+            	</rich:dataTable>   
+			</rich:tab>
+			
+</rich:tabPanel>			
+  
    
    
    <script type="text/javascript">
