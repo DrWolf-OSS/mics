@@ -10,6 +10,14 @@
     template="/layout/template.xhtml">
 
 <ui:define name="body">
+
+    <rich:panel  rendered="#{simulationBean.checkAlert()}">
+         <f:facet name="header">
+            Verifica dati Bilancio 
+        </f:facet>
+        <h:outputText value="#{simulationBean.alertMessage}" />
+    </rich:panel>
+
     <h1>Risultati Simulazione</h1>
     
      <table>

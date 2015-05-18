@@ -53,6 +53,12 @@ public class SimulationBean {
 
 	private boolean datiOk = true;
 
+	private Integer innovazioneProdottoSpinner;
+
+	private Integer innovazioneProcessoSpinner;
+
+	private Integer reputazioneSpinner;
+
 	private Double innovazioneDiProdotto = new Double(0.1);
 
 	private TreeMap<Integer, DatiBilancio> datiBilancio = new TreeMap<Integer, DatiBilancio>();
@@ -64,6 +70,50 @@ public class SimulationBean {
 	private HashMap<String, ArrayList<ArrayList<Integer>>> visualized = new HashMap<String, ArrayList<ArrayList<Integer>>>();
 
 	private HashMap<String, String> labels = new HashMap<String, String>();
+
+	private String alertMessage = "";
+
+	public boolean checkAlert() {
+		boolean result = false;
+		String alertMessage = "Attenzione! Dall'analisi dei dati di bilanio inseriti sono emersi i seguenti problemi:\n";
+		if (this.datiBilancio.get(this.anno0).getRoe() != null
+				&& this.datiBilancio.get(this.anno0)
+						.getRendimentoInvestimentiSicuri() != null) {
+			if (this.datiBilancio
+					.get(this.anno0)
+					.getRoe()
+					.compareTo(
+							this.getDatiBilancio(this.anno0)
+									.getRendimentoInvestimentiSicuri()) <= 0) {
+				result = true;
+				alertMessage += "Il valore del ROE non dobvrebbe essere uguale o inferiore al valore del rendimento in investimenti sicuri\n";
+
+			}
+		}
+		if (this.datiBilancio.get(this.anno0).getEbitda() != null) {
+			if (this.datiBilancio.get(this.anno0).getEbitda()
+					.compareTo(new BigDecimal(0)) < 0) {
+				result = true;
+				alertMessage += "Il valore del EBITDA non dobvrebbe essere negativo\n";
+			}
+		}
+		if (this.datiBilancio.get(this.anno0).getDebitiBancheSuFatturato() != null) {
+			if (this.datiBilancio.get(this.anno0).getDebitiBancheSuFatturato()
+					.compareTo(new BigDecimal(50)) > 0) {
+				result = true;
+				alertMessage += "Il valore dei  Debiti v/banche su fatturato non dobvrebbe essere superiore al 50%\n";
+			}
+		}
+		if (this.datiBilancio.get(this.anno0).getRoi() != null) {
+			if (this.datiBilancio.get(this.anno0).getRoi()
+					.compareTo(new BigDecimal(0)) < 0) {
+				result = true;
+				alertMessage += "Il valore del ROI non dobvrebbe essere negativo\n";
+			}
+		}
+		this.setAlertMessage(alertMessage);
+		return result;
+	}
 
 	public boolean checkCalcoloModello() {
 		if (this.isDatiOk()) {
@@ -130,6 +180,10 @@ public class SimulationBean {
 		return "OK";
 	}
 
+	public String getAlertMessage() {
+		return this.alertMessage;
+	}
+
 	public List<Integer> getAnni(int indice) {
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		Calendar cal = Calendar.getInstance();
@@ -186,12 +240,24 @@ public class SimulationBean {
 		return this.innovazioneDiProdotto;
 	}
 
+	public Integer getInnovazioneProcessoSpinner() {
+		return this.innovazioneProcessoSpinner;
+	}
+
+	public Integer getInnovazioneProdottoSpinner() {
+		return this.innovazioneProdottoSpinner;
+	}
+
 	public Integer getPercentualeCostiProduzioneTerritorio() {
 		return this.percentualeCostiProduzioneTerritorio;
 	}
 
 	public Integer getPercentualeIndottoCongiunturaleTerritorio() {
 		return this.percentualeIndottoCongiunturaleTerritorio;
+	}
+
+	public Integer getReputazioneSpinner() {
+		return this.reputazioneSpinner;
 	}
 
 	public boolean getRequiredForFiled(String field) {
@@ -293,8 +359,6 @@ public class SimulationBean {
 		return unita;
 	}
 
-	// Step Two
-
 	public HashMap<String, ArrayList<ArrayList<Integer>>> getVisualized() {
 		return this.visualized;
 	}
@@ -328,6 +392,12 @@ public class SimulationBean {
 		return this.datiOk;
 	}
 
+	// Step Two
+
+	public void setAlertMessage(String alertMessage) {
+		this.alertMessage = alertMessage;
+	}
+
 	public void setAnno0(Integer anno0) {
 		this.anno0 = anno0;
 	}
@@ -352,6 +422,14 @@ public class SimulationBean {
 		this.innovazioneDiProdotto = innovazioneDiProdotto;
 	}
 
+	public void setInnovazioneProcessoSpinner(Integer innovazioneProcessoSpinner) {
+		this.innovazioneProcessoSpinner = innovazioneProcessoSpinner;
+	}
+
+	public void setInnovazioneProdottoSpinner(Integer innovazioneProdottoSpinner) {
+		this.innovazioneProdottoSpinner = innovazioneProdottoSpinner;
+	}
+
 	public void setPercentualeCostiProduzioneTerritorio(
 			Integer percentualeCostiProduzioneTerritorio) {
 		this.percentualeCostiProduzioneTerritorio = percentualeCostiProduzioneTerritorio;
@@ -360,6 +438,10 @@ public class SimulationBean {
 	public void setPercentualeIndottoCongiunturaleTerritorio(
 			Integer percentualeIndottoCongiunturaleTerritorio) {
 		this.percentualeIndottoCongiunturaleTerritorio = percentualeIndottoCongiunturaleTerritorio;
+	}
+
+	public void setReputazioneSpinner(Integer reputazioneSpinner) {
+		this.reputazioneSpinner = reputazioneSpinner;
 	}
 
 	public void setRisultati(ArrayList<OutputSimulazione> risultati) {

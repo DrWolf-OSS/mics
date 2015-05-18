@@ -106,14 +106,15 @@ public class MiICSiThinkModel {
 
 		BigDecimal contenitoreVolumiDiMercato = new BigDecimal(0);
 
-		Double innovazioneDiProdottoM = new Double(0.3);
+		Double innovazioneDiProdottoM = new Double(0.5);
 
 		Double reputazioneM = new Double(0.4);
 
-		Double reputazione = new Double(0.2);
+		Double reputazione = new Double(
+				this.simulationBean.getReputazioneSpinner() / 100);
 
-		Double innovazioneDiProdotto = this.simulationBean
-				.getInnovazioneDiProdotto();
+		Double innovazioneDiProdotto = new Double(
+				this.simulationBean.getInnovazioneProdottoSpinner() / 100);
 
 		Double incrementoDaInnovazioneProdoto = new Double(0);
 
@@ -252,13 +253,15 @@ public class MiICSiThinkModel {
 			// Productivity
 			// fattore moltiplicativos
 			Double fm = new Double(0);
-			if (innovazioneDiProcesso == 1) {
+			innovazioneDiProcesso = new Double(
+					this.simulationBean.getInnovazioneProcessoSpinner());
+			if (innovazioneDiProcesso == 1.0) {
 				fm = 1.125;
-			} else if (innovazioneDiProcesso == 2) {
+			} else if (innovazioneDiProcesso == 2.0) {
 				fm = 1.25;
-			} else if (innovazioneDiProcesso == 3) {
+			} else if (innovazioneDiProcesso == 3.0) {
 				fm = 1.375;
-			} else if (innovazioneDiProcesso == 4) {
+			} else if (innovazioneDiProcesso == 4.0) {
 				fm = 1.5;
 			} else {
 				fm = 1.0;

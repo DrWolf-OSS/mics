@@ -32,6 +32,24 @@
             enableManualInput="true" showBoundaryValues="true" value="#{simulationBean.percentualeIndottoCongiunturaleTerritorio}" />
             
             </s:decorate>   
+            
+            <s:decorate id="innovazioneProdottoField" template="/layout/edit.xhtml">
+                <ui:define name="label">Innovazione di Prodotto</ui:define>
+                 <rich:inputNumberSlider  maxValue="100" showInput="true"
+            enableManualInput="true" showBoundaryValues="true" value="#{simulationBean.innovazioneProdottoSpinner}" />
+             </s:decorate>   
+            <s:decorate id="innovazioneProcessoField" template="/layout/edit.xhtml">
+                <ui:define name="label">Innovazione di Processo</ui:define>
+                 <rich:inputNumberSlider  maxValue="4" showInput="true"
+            enableManualInput="true" showBoundaryValues="true" value="#{simulationBean.innovazioneProcessoSpinner}" />
+             </s:decorate>   
+	         <s:decorate id="reputazioneField" template="/layout/edit.xhtml">
+	                <ui:define name="label">Reputazione</ui:define>
+                 <rich:inputNumberSlider  maxValue="100" showInput="true"
+            enableManualInput="true" showBoundaryValues="true" value="#{simulationBean.reputazioneSpinner}" />
+	         </s:decorate>   
+	        
+            
             <s:decorate id="domandaMercato0Field" template="/layout/edit.xhtml">
                 <ui:define name="label"><h:outputText  value="#{'Valore globale del mercatao per l\'anno '.concat(simulationBean.getAnnoSimulazione(0))}" /> </ui:define>
                 <h:inputText id="simulaizioneAnno0"
