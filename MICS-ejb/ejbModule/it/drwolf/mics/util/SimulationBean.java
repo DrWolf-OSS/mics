@@ -139,12 +139,13 @@ public class SimulationBean {
 		this.entityManager.persist(azienda);
 
 		// salvo la domanda di mercato
-		this.entityManager.persist(this.domandaMercato);
+		// this.entityManager.persist(this.domandaMercato);
 
 		// poi persisto al Simulazione
 		Simulazione simulazione = new Simulazione();
 		simulazione.setDataInserimento(new Date());
 		simulazione.setAzienda(azienda);
+		simulazione.setDomandaMercato(this.domandaMercato);
 		this.entityManager.persist(simulazione);
 
 		// a questo punto devo salvare i Dati di Bilancio
@@ -251,6 +252,11 @@ public class SimulationBean {
 
 	public Integer getInnovazioneProdottoSpinner() {
 		return this.innovazioneProdottoSpinner;
+	}
+
+	public List<Simulazione> getListaSimulazioni() {
+		return this.entityManager.createQuery("from Simulazione")
+				.getResultList();
 	}
 
 	public Integer getPercentualeCostiProduzioneTerritorio() {

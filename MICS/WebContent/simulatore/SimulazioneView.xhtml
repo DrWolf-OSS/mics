@@ -1,0 +1,131 @@
+    <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a="http://richfaces.org/a4j"
+    template="/layout/template.xhtml">
+
+<ui:define name="body">
+<rich:panel header="Dettaglio Simulazione">
+
+	<rich:panel header="Dati Simulazioie">
+	 <s:decorate id="aziendaField" template="/layout/edit.xhtml">
+	    <ui:define name="label">Azienda</ui:define>
+		<h:outputText value="#{simulazioneHome.instance.azienda.azienda}" />
+	</s:decorate>
+	 <s:decorate id="settoreField" template="/layout/edit.xhtml">
+	    <ui:define name="label">Settore</ui:define>
+		<h:outputText value="#{simulazioneHome.instance.azienda.settore}" />
+	</s:decorate>
+	 <s:decorate id="dataField" template="/layout/edit.xhtml">
+	    <ui:define name="label">Data simulazione</ui:define>
+		<h:outputText value="#{simulazioneHome.instance.dataInserimento}" />
+	</s:decorate>
+
+		<div style="clear:both">
+            </div>
+</rich:panel>
+
+	<rich:spacer height="10"/>
+	 
+	<rich:panel header="Quadro generale della performance aziendale">
+	<rich:dataTable value="#{simulazioneHome.instance.datiBilanciAsList}" var="data">
+		<rich:column>
+			<f:facet name="header">Anno</f:facet>
+			<h:outputText value="#{data.annoBilancio.anno}" />
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">ROE</f:facet>
+			<h:outputText value="#{data.roe}" /> %
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Rendimento in investimenti sicuri</f:facet>
+			<h:outputText value="#{data.rendimentoInvestimentiSicuri}" /> %
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Debiti v/banche su fatturato</f:facet>
+			<h:outputText value="#{data.debitiBancheSuFatturato}" /> %
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">ROI</f:facet>
+			<h:outputText value="#{data.roi}" /> %
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Costo del lavoro pro-capite</f:facet>
+			<h:outputText value="#{data.costoLavoroProCapite}"  /> €
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Costo del lavoro, Media del comparto</f:facet>
+			<h:outputText value="#{data.costoLavoroMedioComparto}" /> €
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">EBITDA</f:facet>
+			<h:outputText value="#{data.ebitda}" /> €
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Quota ammortamento beni materiali</f:facet>
+			<h:outputText value="#{data.quotaAmmortamentoBeniMateriali}" /> %
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Costi di prod. per godimento beni di terzi</f:facet>
+			<h:outputText value="#{data.costiProdGodimentoBeniTerzi}" /> €
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Quota ammortamento beni immateriali</f:facet>
+			<h:outputText value="#{data.quotaAmmortamentoBeniImmateriali}" /> %
+		</rich:column>
+	</rich:dataTable>
+	</rich:panel>
+	
+		<rich:spacer height="10"/>
+	 
+	<rich:panel header="Produttività media del lavoro, Quota volumi aziendali, valore medio unita’ prodotta">
+	<rich:dataTable value="#{simulazioneHome.instance.datiBilanciAsList}" var="data" rows="1">
+		<rich:column>
+			<f:facet name="header">Anno</f:facet>
+			<h:outputText value="#{data.annoBilancio.anno}" />
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Fatturato</f:facet>
+			<h:outputText value="#{data.fatturato}" />
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Costo delle materie prime e di consumo</f:facet>
+			<h:outputText value="#{data.costoMateriePrime}" />
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Numero dipendenti</f:facet>
+			<h:outputText value="#{data.numeroDipendenti}" />
+		</rich:column>
+		<rich:column>
+			<f:facet name="header">Quantità vendute</f:facet>
+			<h:outputText value="#{data.quantitaVendute}" />
+		</rich:column>
+	</rich:dataTable>
+	</rich:panel>
+		<rich:spacer height="10"/>
+	 
+	<rich:panel header="Domanda Mercato">
+	<s:decorate id="anno0Field" template="/layout/edit.xhtml">
+	    <ui:define name="label">Anno 0</ui:define>
+		<h:outputText value="#{simulazioneHome.instance.domandaMercato.volumeMercatoAnno0}" /> €
+	</s:decorate>
+	<s:decorate id="anno1Field" template="/layout/edit.xhtml">
+	    <ui:define name="label">Anno 1</ui:define>
+		<h:outputText value="#{simulazioneHome.instance.domandaMercato.volumeMercatoAnno1}" /> €
+	</s:decorate>
+	<s:decorate id="anno2Field" template="/layout/edit.xhtml">
+	    <ui:define name="label">Anno 2</ui:define>
+		<h:outputText value="#{simulazioneHome.instance.domandaMercato.volumeMercatoAnno2}" /> €
+	</s:decorate>
+	<div style="clear:both">
+            </div>
+	
+	</rich:panel>	
+</rich:panel>
+</ui:define>
+</ui:composition>

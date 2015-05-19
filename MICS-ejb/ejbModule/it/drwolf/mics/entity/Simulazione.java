@@ -1,8 +1,10 @@
 package it.drwolf.mics.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,8 +18,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.NotNull;
 
@@ -95,8 +97,12 @@ public class Simulazione implements Serializable {
 		return this.datiBilanci;
 	}
 
+	@Transient
+	public List<DatiBilancio> getDatiBilanciAsList() {
+		return new ArrayList<DatiBilancio>(this.datiBilanci);
+	}
+
 	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
 	public DomandaMercato getDomandaMercato() {
 		return this.domandaMercato;
 	}
@@ -126,6 +132,11 @@ public class Simulazione implements Serializable {
 
 	public void setDatiBilanci(Set<DatiBilancio> datiBilanci) {
 		this.datiBilanci = datiBilanci;
+	}
+
+	@Transient
+	public void setDatiBilanciAsList(List<DatiBilancio> datiBilanciList) {
+		this.setDatiBilanci(new HashSet<DatiBilancio>(datiBilanciList));
 	}
 
 	public void setDomandaMercato(DomandaMercato domandaMercato) {
