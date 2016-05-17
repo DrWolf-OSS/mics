@@ -110,21 +110,7 @@
 	</rich:panel>
 		<rich:spacer height="10"/>
 <rich:tabPanel>
-            <rich:tab label="Grafico">    
-     <table>
-      <tr>
-          <td width="99%">
-               <div id="placeholder" style="height:400px;width:100%;"></div>
-          </td>
-          <td width="128">
-              <div id="legend" style="width: 128px;height:400px;overflow:auto;"></div>
-          </td>
-      </tr>
-   </table>
-   <p id="choices"></p>
-
-
-    </rich:tab>
+          
             <rich:tab label="Tabella"> 
                 <rich:dataTable id="tabella" value="#{simulazioneHome.risultati}" var="output" >
                      <rich:column>
@@ -175,7 +161,21 @@
                      </rich:column>
                 </rich:dataTable>   
             </rich:tab>
-            
+              <rich:tab label="Grafico">    
+     <table>
+      <tr>
+          <td width="99%">
+               <div id="placeholder" style="height:400px;width:100%;"></div>
+          </td>
+          <td width="128">
+              <div id="legend" style="width: 128px;height:400px;overflow:auto;"></div>
+          </td>
+      </tr>
+   </table>
+   <p id="choices"></p>
+
+
+    </rich:tab>
 </rich:tabPanel>    
 
 <script type="text/javascript">

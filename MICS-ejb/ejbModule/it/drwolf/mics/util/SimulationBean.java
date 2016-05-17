@@ -53,6 +53,7 @@ public class SimulationBean {
 	private Integer percentualeIndottoCongiunturaleTerritorio;
 
 	private boolean datiOk = true;
+	private boolean ricalcolo = false;
 
 	private Integer innovazioneProdottoSpinner;
 
@@ -472,13 +473,16 @@ public class SimulationBean {
 
 		}
 
-		for (OutputSimulazione os : this.risultati) {
-			OutputSimulazioneId id = new OutputSimulazioneId(
-					this.datiBilancioHome.getInstance().getSimulazione().getId(),
-					os.getTrimestreSimulazione().getTrimestre());
-			os.setId(id);
-			os.setSimulazione(this.datiBilancioHome.getInstance().getSimulazione());
-			this.entityManager.persist(os);
+		if (!this.ricalcolo) {
+			for (OutputSimulazione os : this.risultati) {
+				OutputSimulazioneId id = new OutputSimulazioneId(
+						this.datiBilancioHome.getInstance().getSimulazione().getId(),
+						os.getTrimestreSimulazione().getTrimestre());
+				os.setId(id);
+				os.setSimulazione(this.datiBilancioHome.getInstance().getSimulazione());
+				this.entityManager.persist(os);
+			}
+			this.ricalcolo = true;
 		}
 	}
 }

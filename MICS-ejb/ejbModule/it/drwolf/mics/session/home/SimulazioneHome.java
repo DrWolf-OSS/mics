@@ -56,46 +56,50 @@ public class SimulazioneHome extends EntityHome<Simulazione> {
 	}
 
 	public ArrayList<OutputSimulazione> getRisultati() {
-
+		if (this.risultati.size() == 0) {
+			this.loadRisultati();
+		}
 		return this.risultati;
 	}
 
 	public ArrayList<ArrayList<Integer>> getRisultatiByName(String name) {
 		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-		for (int index = 3; index < this.risultati.size(); index++) {
-			OutputSimulazione os = this.risultati.get(index);
-			try {
-				ArrayList<Integer> trimestre = new ArrayList<Integer>();
-				trimestre.add(os.getTrimestreSimulazione().getTrimestre());
-				Object res = os.getClass().getMethod(name, null).invoke(os, null);
-				if (res instanceof Double) {
-					Double d = (Double) res;
-					trimestre.add(d.intValue());
-				} else if (res instanceof BigDecimal) {
-					BigDecimal bd = (BigDecimal) res;
-					trimestre.add(bd.intValue());
-				} else if (res instanceof Integer) {
-					Integer i = (Integer) res;
-					trimestre.add(i);
-				} else {
-					trimestre.add(0);
+		if (this.risultati.size() > 0) {
+			for (int index = 3; index < this.risultati.size(); index++) {
+				OutputSimulazione os = this.risultati.get(index);
+				try {
+					ArrayList<Integer> trimestre = new ArrayList<Integer>();
+					trimestre.add(os.getTrimestreSimulazione().getTrimestre());
+					Object res = os.getClass().getMethod(name, null).invoke(os, null);
+					if (res instanceof Double) {
+						Double d = (Double) res;
+						trimestre.add(d.intValue());
+					} else if (res instanceof BigDecimal) {
+						BigDecimal bd = (BigDecimal) res;
+						trimestre.add(bd.intValue());
+					} else if (res instanceof Integer) {
+						Integer i = (Integer) res;
+						trimestre.add(i);
+					} else {
+						trimestre.add(0);
+					}
+					result.add(trimestre);
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NoSuchMethodException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				result.add(trimestre);
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 		return result;
@@ -133,7 +137,9 @@ public class SimulazioneHome extends EntityHome<Simulazione> {
 			OutputSimulazioneId id = new OutputSimulazioneId(this.getInstance().getId(),
 					trimestreSimulazione.getTrimestre());
 			OutputSimulazione o = this.getEntityManager().find(OutputSimulazione.class, id);
-			this.risultati.add(o);
+			if (o != null) {
+				this.risultati.add(o);
+			}
 
 		}
 
