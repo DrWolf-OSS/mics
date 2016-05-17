@@ -10,8 +10,9 @@
     template="/layout/template.xhtml">
 
 <ui:define name="body">
+<h:form>
 	<rich:panel header="Elenco Simulazioni">
-             <rich:dataTable id="tabella" value="#{simulationBean.listaSimulazioni}" var="s" >
+             <rich:dataTable id="tabella" value="#{simulationBean.listaSimulazioni}" var="s" rows="10" >
              <rich:column>
              	<f:facet name="header">Id</f:facet>
              	<h:outputText value="#{s.id}" />
@@ -34,9 +35,12 @@
              		<f:param name="simulazioneId" value="#{s.id}"/>
              	</s:button>
              </rich:column>
-             
+             <f:facet name="footer">
+                <rich:datascroller />
+            </f:facet>
              </rich:dataTable>
              
-    </rich:panel>         
+    </rich:panel>     
+    </h:form>    
 </ui:define>
 </ui:composition>
